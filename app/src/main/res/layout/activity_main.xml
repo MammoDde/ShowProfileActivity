@@ -22,13 +22,16 @@
             android:id="@+id/ll1"
             android:layout_width="match_parent"
             android:layout_height="244dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            android:gravity="center">
 
             <ImageView
                 android:id="@+id/imageView"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
+                android:layout_width="130dp"
+                android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:scaleType="fitXY"
                 tools:srcCompat="@tools:sample/avatars" />
@@ -37,6 +40,8 @@
         <LinearLayout
             android:id="@+id/ll2"
             android:layout_width="match_parent"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
             android:layout_height="152dp"
             android:layout_weight="2"
             android:orientation="vertical">
@@ -45,7 +50,6 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Full Name"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -53,7 +57,6 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="NIckname"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -61,7 +64,6 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="e-mail address"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -69,7 +71,6 @@
                 android:id="@+id/textView4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Location of the user"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -77,7 +78,6 @@
                 android:id="@+id/textView5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Skills"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
@@ -85,7 +85,6 @@
                 android:id="@+id/textView6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Description"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
