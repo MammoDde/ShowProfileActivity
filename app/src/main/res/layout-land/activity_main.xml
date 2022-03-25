@@ -6,30 +6,21 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:id="@+id/llo1"
-        android:layout_width="265dp"
-        android:layout_height="246dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="2"
-        android:gravity="center"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:background="#000000"
-            android:scaleType="fitXY"
-            app:srcCompat="@drawable/ic_launcher_foreground"
-            tools:ignore="ImageContrastCheck,ImageContrastCheck"
-            tools:srcCompat="@tools:sample/avatars" />
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top"
+        android:layout_margin="30dp"
+        android:background="#000000"
+        android:contentDescription="@string/app_name"
+        android:scaleType="fitXY"
+        app:srcCompat="@drawable/ic_launcher_foreground"
+        tools:ignore="ImageContrastCheck,ImageContrastCheck"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <LinearLayout
-        android:id="@+id/llo2"
+        android:id="@+id/listHorizontal"
         android:layout_width="389dp"
         android:layout_height="242dp"
         android:layout_marginStart="16dp"
