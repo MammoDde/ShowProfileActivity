@@ -13,7 +13,6 @@
         android:layout_gravity="top"
         android:layout_margin="30dp"
         android:background="#000000"
-        android:contentDescription="@string/app_name"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/ic_launcher_foreground"
         tools:ignore="ImageContrastCheck,ImageContrastCheck"
