@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="top"
         android:layout_margin="30dp"
+        android:layout_weight="1"
         android:background="#000000"
         android:scaleType="fitXY"
         app:srcCompat="@drawable/ic_launcher_foreground"
