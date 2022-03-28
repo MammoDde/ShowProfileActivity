@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">ShowProfileActivity</string>
+    <string name="image_profile">image profile</string>
+    <string name="full_name">full name</string>
+    <string name="nickname">nickname</string>
+    <string name="email">email</string>
+    <string name="mario22">Mario22</string>
+    <string name="mario_rossi_polito_it">mario.rossi@polito.it</string>
+    <string name="corso_duca_degli_abruzzi_torino">Corso Duca degli Abruzzi, Torino</string>
+    <string name="other">Other</string>
+    <string name="mario_rossi">Mario Rossi</string>
 </resources>

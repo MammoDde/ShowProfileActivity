@@ -7,17 +7,18 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageView3"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="top"
-        android:layout_margin="30dp"
-        android:layout_weight="1"
-        android:background="#000000"
-        android:scaleType="fitXY"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:layout_weight="2"
+        android:background="#FF80B66D"
+        android:contentDescription="@string/image_profile"
+        android:scaleType="center"
         app:srcCompat="@drawable/ic_launcher_foreground"
-        tools:ignore="ImageContrastCheck,ImageContrastCheck"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:ignore="ImageContrastCheck"
+        tools:srcCompat="@drawable/ic_launcher_foreground" />
 
     <LinearLayout
         android:id="@+id/listHorizontal"
@@ -33,7 +34,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Mario Rossi"
+            android:contentDescription="@string/full_name"
+            android:text="@string/mario_rossi"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <TextView
@@ -41,7 +43,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Mario22"
+            android:text="@string/mario22"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
@@ -50,7 +52,8 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="mario.rossi@polito.it"
+            android:contentDescription="@string/email"
+            android:text="@string/mario_rossi_polito_it"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
@@ -59,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Corso Duca degli Abruzzi, Torino"
+            android:text="@string/corso_duca_degli_abruzzi_torino"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
@@ -68,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="Other"
+            android:text="@string/other"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
     </LinearLayout>
