@@ -35,49 +35,64 @@
         <TextView
             android:id="@+id/textView"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/full_name"
             android:text="@string/mario_rossi"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            tools:layout_conversion_absoluteHeight="104dp"
+            tools:layout_conversion_absoluteWidth="347dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="371dp" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:contentDescription="@string/nickname"
             android:text="@string/mario22"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:contentDescription="@string/email"
-            android:text="@string/mario_rossi_polito_it"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:layout_conversion_absoluteHeight="104dp"
+            tools:layout_conversion_absoluteWidth="347dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="475dp" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="@string/corso_duca_degli_abruzzi_torino"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:layout_conversion_absoluteHeight="104dp"
+            tools:layout_conversion_absoluteWidth="347dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="579dp" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/email"
+            android:text="@string/mario_rossi_polito_it"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            android:textSize="20sp"
+            tools:layout_conversion_absoluteHeight="104dp"
+            tools:layout_conversion_absoluteWidth="347dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="683dp" />
 
         <TextView
             android:id="@+id/textView6"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:text="@string/other"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            tools:layout_conversion_absoluteHeight="104dp"
+            tools:layout_conversion_absoluteWidth="347dp"
+            tools:layout_editor_absoluteX="32dp"
+            tools:layout_editor_absoluteY="787dp" />
 
 
     </LinearLayout>
