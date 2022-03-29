@@ -9,4 +9,9 @@
     <string name="corso_duca_degli_abruzzi_torino">Corso Duca degli Abruzzi, Torino</string>
     <string name="other">Other</string>
     <string name="mario_rossi">Mario Rossi</string>
+    <string name="skills">Skills:</string>
+    <string name="i_take_care_of_baby">I take care of baby</string>
+    <string name="babysitting">BabySitting</string>
+    <string name="a_good_english_teacher">A good english teacher</string>
+    <string name="english">English</string>
 </resources>

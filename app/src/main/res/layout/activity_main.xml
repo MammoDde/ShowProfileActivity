@@ -11,17 +11,16 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_margin="40dp"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_margin="16dp"
         android:layout_weight="1"
-        android:background="#80B66D"
+        android:background="#FFFFFF"
         android:contentDescription="@string/image_profile"
-        android:scaleType="center"
-        app:srcCompat="@drawable/ic_launcher_foreground"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/avatr"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/ic_launcher_foreground" />
+        tools:srcCompat="@drawable/avatr" />
 
     <LinearLayout
         android:id="@+id/listVertical"
@@ -82,17 +81,70 @@
             tools:layout_editor_absoluteX="32dp"
             tools:layout_editor_absoluteY="683dp" />
 
+        <View
+            android:id="@+id/divider2"
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_marginTop="16dp"
+            android:background="?android:attr/listDivider" />
+
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/other"
+            android:text="@string/skills"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp"
-            tools:layout_conversion_absoluteHeight="104dp"
-            tools:layout_conversion_absoluteWidth="347dp"
-            tools:layout_editor_absoluteX="32dp"
-            tools:layout_editor_absoluteY="787dp" />
+            android:textSize="20sp" />
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView12"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/english"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView13"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/a_good_english_teacher"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="20sp" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/textView14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/babysitting"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/textView15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/i_take_care_of_baby"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="20sp" />
+            </TableRow>
+
+        </TableLayout>
 
 
     </LinearLayout>
