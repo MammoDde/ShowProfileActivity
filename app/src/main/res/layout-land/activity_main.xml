@@ -11,23 +11,23 @@
 
     <ImageView
         android:id="@+id/imageView3"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginEnd="16dp"
-        android:layout_weight="1"
+        android:layout_weight="2"
         android:background="#0080B66D"
         android:contentDescription="@string/image_profile"
         app:srcCompat="@drawable/avatr"
         tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/avatr"
-        android:layout_width="wrap_content" />
+        tools:srcCompat="@drawable/avatr" />
 
     <LinearLayout
         android:id="@+id/listHorizontal"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:layout_weight="2"
-        android:orientation="vertical"
-        android:layout_width="wrap_content">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/textView5"
