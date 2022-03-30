@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ShowProfileActivity">
         <activity
+            android:name=".EditCheck"
+            android:exported="false" />
+        <activity
             android:name=".edit_check"
             android:exported="false" />
         <activity
