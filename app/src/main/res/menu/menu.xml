@@ -4,6 +4,6 @@
     <item
         android:id="@+id/icon"
         android:icon="@drawable/ic_baseline_edit_24"
-        android:title="edit"
+        android:title="@string/edit"
         compat:showAsAction="always" />
 </menu>

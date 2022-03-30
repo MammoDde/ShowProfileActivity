@@ -3,13 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.243" />
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/drawable/ic_launcher_background.xml" value="0.243" />
         <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout-land/activity_main.xml" value="0.1" />
         <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout-ldltr/activity_main_landscape.xml" value="0.20199275362318841" />
-        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.20199275362318841" />
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout/activity_edit_check.xml" value="0.1" />
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout/activity_editcheck.xml" value="0.1" />
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Davide Mammone/PoliTo/II magistrale/MAD/AndroidStudioProjects/app/src/main/res/menu/menu.xml" value="0.30052083333333335" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_main.xml" value="0.25" />
-        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/menu.xml" value="0.33" />
-        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.197" />
       </map>
     </option>
   </component>
