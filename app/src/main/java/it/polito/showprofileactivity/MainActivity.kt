@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         // Handle item selection
         return when (item.itemId) {
             R.id.icon -> {
-                val i = Intent(this,EditCheck::class.java)
+                val i = Intent(this,EditProfileActivity::class.java)
                 startActivity(i)
                 true
             }

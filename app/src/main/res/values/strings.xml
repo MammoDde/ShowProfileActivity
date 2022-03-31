@@ -16,4 +16,14 @@
     <string name="english">English</string>
     <string name="edit">edit</string>
     <string name="check">Check</string>
+    <string name="name">Name</string>
+    <string name="email1">email</string>
+    <string name="todo">TODO</string>
+    <string name="nickname1">Nickname</string>
+    <string name="skill2">Skill2</string>
+    <string name="description1">Description1</string>
+    <string name="description2">Description2</string>
+    <string name="location">Location</string>
+    <string name="skill1">Skill1</string>
+    <string name="descrizione">descrizione</string>
 </resources>
