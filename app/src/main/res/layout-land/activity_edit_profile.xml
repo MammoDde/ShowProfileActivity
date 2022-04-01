@@ -33,6 +33,7 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imageView7"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         app:layout_constraintWidth_percent="0.7">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -169,23 +170,20 @@
                 android:inputType="textMultiLine"
                 android:minHeight="48dp"
                 android:text="@string/description2"
-                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName16"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName16"
-                app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine6" />
+                app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName16" />
 
             <EditText
                 android:id="@+id/editTextTextMultiLine6"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:gravity="start|top"
                 android:inputType="textMultiLine"
                 android:minHeight="48dp"
                 android:text="@string/description1"
-                app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine5"
+                app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName11"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName11"
-                app:layout_constraintTop_toBottomOf="@+id/textView22" />
+                app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName11" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
