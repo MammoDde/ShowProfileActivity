@@ -142,6 +142,7 @@
                     android:text="@string/i_take_care_of_baby"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textSize="20sp" />
+
             </TableRow>
 
         </TableLayout>
