@@ -1,15 +1,13 @@
 package it.polito.showprofileactivity
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.ContextMenu
-import android.view.View
-import android.widget.Button
+import android.provider.MediaStore
 import android.widget.ImageButton
 import android.widget.Toast
-import android.widget.Toast.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
+
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -23,12 +21,15 @@ class EditProfileActivity : AppCompatActivity() {
             val popupMenu = PopupMenu(this, it)
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId){
-                    R.id.menu_open_website -> {
-                        Toast.makeText(this, "Camera!", Toast.LENGTH_LONG).show()
+                    R.id.menu_open_camera -> {
+                        val photoIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        startActivity(photoIntent);
                         true
                     }
-                    R.id.menu_show_toast -> {
-                        Toast.makeText(this, "Gallery!", Toast.LENGTH_LONG).show()
+                    R.id.menu_open_gallery -> {
+                        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+                        galleryIntent.type = "image/*"
+                        startActivity(galleryIntent);
                         true
                     }
                     else -> false
