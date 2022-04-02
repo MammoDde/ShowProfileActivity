@@ -154,14 +154,16 @@
             android:id="@+id/editTextTextMultiLine2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="276dp"
             android:ems="10"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:text="@string/description2"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName16"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName16" />
+            app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName16"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
 
         <EditText
             android:id="@+id/editTextTextMultiLine"
@@ -171,10 +173,11 @@
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:text="@string/description1"
-            app:layout_constraintBaseline_toBaselineOf="@+id/editTextTextPersonName11"
+            app:layout_constraintBottom_toTopOf="@+id/editTextTextMultiLine2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName11"
+            app:layout_constraintTop_toBottomOf="@+id/textView18"
             app:layout_constraintVertical_chainStyle="spread" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
