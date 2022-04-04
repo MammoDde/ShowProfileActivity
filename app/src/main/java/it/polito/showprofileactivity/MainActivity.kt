@@ -14,6 +14,8 @@ import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.graphics.createBitmap
+import androidx.core.view.drawToBitmap
+import java.io.ByteArrayOutputStream
 
 class MainActivity : AppCompatActivity() {
 
@@ -42,6 +44,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun editProfile(){
         val i = Intent(this,EditProfileActivity::class.java)
+        var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var tv1: TextView = findViewById(R.id.textView)
         var tv2: TextView = findViewById(R.id.textView2)
         var tv3: TextView = findViewById(R.id.textView3)
@@ -50,6 +53,10 @@ class MainActivity : AppCompatActivity() {
         var tv6: TextView = findViewById(R.id.textView14)
         var tv7: TextView = findViewById(R.id.textView13)
         var tv8: TextView = findViewById(R.id.textView15)
+        var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
+        var bt: ByteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
+        i.putExtra("image",bt.toByteArray())
         i.putExtra("Name",tv1.text)
         i.putExtra("Nickname",tv2.text)
         i.putExtra("email",tv3.text)

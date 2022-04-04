@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.media.Image
 import android.net.Uri
 import android.os.Bundle
@@ -35,7 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         var editButton: ImageButton = findViewById(R.id.imageButton2)
-
+        var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var name: String? = intent.getStringExtra("Name")
         var nick: String? = intent.getStringExtra("Nickname")
         var email: String? = intent.getStringExtra("email")
@@ -53,6 +54,8 @@ class EditProfileActivity : AppCompatActivity() {
         var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
         var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
 
+        var bitmap: Bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("image"),0,intent.getByteArrayExtra("image")!!.size)
+        img.setImageBitmap(bitmap)
         ed1.setText(name)
         ed2.setText(nick)
         ed3.setText(email)
