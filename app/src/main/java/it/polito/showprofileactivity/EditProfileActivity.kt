@@ -107,13 +107,16 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            val imageBitmap = data?.extras?.get("data") as Bitmap
+            if (data != null) {
+                val imageBitmap = data?.extras?.get("data") as Bitmap
+                image.setImageBitmap(imageBitmap)
+            }else{
+                val i = Intent(this, EditCheck::class.java)
+                startActivity(i)
+                super.onActivityResult(requestCode, resultCode, data)
+            }
 
-            image.setImageBitmap(imageBitmap)
-        } else {
-            image.setImageDrawable(getDrawable(R.drawable.avatr))
         }
-        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun createImageFile(): File {
@@ -129,6 +132,8 @@ class EditProfileActivity : AppCompatActivity() {
             currentPhotoPath = absolutePath
         }
     }
+
+
 
 
     override fun onBackPressed() {
