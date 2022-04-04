@@ -83,6 +83,7 @@ class EditProfileActivity : AppCompatActivity() {
                                     )
                                     takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
                                     startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+
                                 }
                             }
                         }
