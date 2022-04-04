@@ -38,20 +38,27 @@ class MainActivity : AppCompatActivity() {
 
     private fun editProfile(){
         val i = Intent(this,EditProfileActivity::class.java)
-        i.putExtra("Name",getString(R.string.mario_rossi))
-        i.putExtra("Nickname",getString(R.string.mario22))
-        i.putExtra("email",getString(R.string.mario_rossi_polito_it))
-        i.putExtra("location",getString(R.string.corso_duca_degli_abruzzi_torino))
-        i.putExtra("skill1",getString(R.string.english))
-        i.putExtra("skill2",getString(R.string.babysitting))
-        i.putExtra("description1",getString(R.string.a_good_english_teacher))
-        i.putExtra("description2",getString(R.string.i_take_care_of_baby))
+        var tv1: TextView = findViewById(R.id.textView)
+        var tv2: TextView = findViewById(R.id.textView2)
+        var tv3: TextView = findViewById(R.id.textView3)
+        var tv4: TextView = findViewById(R.id.textView4)
+        var tv5: TextView = findViewById(R.id.textView12)
+        var tv6: TextView = findViewById(R.id.textView14)
+        var tv7: TextView = findViewById(R.id.textView13)
+        var tv8: TextView = findViewById(R.id.textView15)
+        i.putExtra("Name",tv1.text)
+        i.putExtra("Nickname",tv2.text)
+        i.putExtra("email",tv3.text)
+        i.putExtra("location",tv4.text)
+        i.putExtra("skill1",tv5.text)
+        i.putExtra("skill2",tv6.text)
+        i.putExtra("description1",tv7.text)
+        i.putExtra("description2",tv8.text)
         //launcher.launch(i)
         startActivityForResult(i,123)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
         var tv1: TextView = findViewById(R.id.textView)
         var tv2: TextView = findViewById(R.id.textView2)
         var tv3: TextView = findViewById(R.id.textView3)
@@ -90,6 +97,8 @@ class MainActivity : AppCompatActivity() {
 
 
         }
+        super.onActivityResult(requestCode, resultCode, data)
+
     }
 
 }

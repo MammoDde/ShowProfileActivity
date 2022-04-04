@@ -3,6 +3,7 @@ package it.polito.showprofileactivity
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
+import android.media.Image
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
@@ -13,6 +14,7 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
+import androidx.core.view.drawToBitmap
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -103,13 +105,15 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             val imageBitmap = data?.extras?.get("data") as Bitmap
-            val image = findViewById<ImageView>(R.id.imageView)
+
             image.setImageBitmap(imageBitmap)
         } else {
-            super.onActivityResult(requestCode, resultCode, data)
+            image.setImageDrawable(getDrawable(R.drawable.avatr))
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
     private fun createImageFile(): File {
@@ -129,6 +133,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         val i = Intent()
+        var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var ed1 = findViewById<EditText>(R.id.editTextTextPersonName8)
         var ed2: EditText = findViewById<EditText>(R.id.editTextTextPersonName9)
         var ed3: EditText = findViewById<EditText>(R.id.editTextTextEmailAddress3)
@@ -138,6 +143,7 @@ class EditProfileActivity : AppCompatActivity() {
         var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
         var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
 
+        i.putExtra("image",img.drawToBitmap())
         i.putExtra("Name", ed1.text.toString())
         i.putExtra("Nickname",ed2.text.toString())
         i.putExtra("email",ed3.text.toString())
