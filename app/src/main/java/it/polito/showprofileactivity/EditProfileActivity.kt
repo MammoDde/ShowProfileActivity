@@ -1,5 +1,6 @@
 package it.polito.showprofileactivity
 
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.provider.MediaStore
@@ -72,6 +73,31 @@ class EditProfileActivity : AppCompatActivity() {
 
 
 }
+
+    override fun onBackPressed() {
+        val i = Intent()
+        var ed1 = findViewById<EditText>(R.id.editTextTextPersonName8)
+        var ed2: EditText = findViewById<EditText>(R.id.editTextTextPersonName9)
+        var ed3: EditText = findViewById<EditText>(R.id.editTextTextEmailAddress3)
+        var ed4: EditText = findViewById<EditText>(R.id.editTextTextPersonName10)
+        var ed5: EditText = findViewById<EditText>(R.id.editTextTextPersonName11)
+        var ed6: EditText = findViewById<EditText>(R.id.editTextTextPersonName16)
+        var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
+        var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
+
+        i.putExtra("Name", ed1.text.toString())
+        i.putExtra("Nickname",ed2.text.toString())
+        i.putExtra("email",ed3.text.toString())
+        i.putExtra("location",ed4.text.toString())
+        i.putExtra("skill1",ed5.text.toString())
+        i.putExtra("skill2",ed6.text.toString())
+        i.putExtra("description1",ed7.text.toString())
+        i.putExtra("description2",ed8.text.toString())
+        setResult(Activity.RESULT_OK,i)
+
+        super.onBackPressed()
+
+    }
 
 
 
