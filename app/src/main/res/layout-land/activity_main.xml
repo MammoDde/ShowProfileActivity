@@ -30,7 +30,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:contentDescription="@string/full_name"
@@ -38,27 +38,29 @@
             android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/nickname"
             android:text="@string/mario22"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/email"
-            android:text="@string/mario_rossi_polito_it"
+            android:contentDescription="@string/corso_duca_degli_abruzzi_torino"
+            android:text="@string/corso_duca_degli_abruzzi_torino"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
         <TextView
-            android:id="@+id/textView9"
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/corso_duca_degli_abruzzi_torino"
+            android:contentDescription="@string/email"
+            android:text="@string/mario_rossi_polito_it"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp" />
 
@@ -70,7 +72,7 @@
             android:background="?android:attr/listDivider" />
 
         <TextView
-            android:id="@+id/textView10"
+            android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/skills"
