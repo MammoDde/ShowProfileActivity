@@ -1,6 +1,8 @@
 package it.polito.showprofileactivity
 
+import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.media.Image
@@ -14,7 +16,9 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
+import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.drawToBitmap
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.IOException
 import java.text.SimpleDateFormat
@@ -64,29 +68,14 @@ class EditProfileActivity : AppCompatActivity() {
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId){
                     R.id.menu_open_camera -> {
-                        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
-                            // Ensure that there's a camera activity to handle the intent
-                            takePictureIntent.resolveActivity(packageManager)?.also {
-                                // Create the File where the photo should go
-                                val photoFile: File? = try {
-                                    createImageFile()
-                                } catch (ex: IOException) {
-                                    // Error occurred while creating the File
-                                    null
-                                }
-                                // Continue only if the File was successfully created
-                                photoFile?.also {
-                                    val photoURI: Uri = FileProvider.getUriForFile(
-                                        this,
-                                        "com.example.android.fileprovider",
-                                        it
-                                    )
-                                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
-                                    startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
-
-                                }
-                            }
+                        val takePictureIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+                        try {
+                            startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE)
+                        }catch (e : ActivityNotFoundException){
+                            println(e)
                         }
+                                // Continue only if the File was successfully created
+
                         true
                     }
                     R.id.menu_open_gallery -> {
@@ -108,15 +97,15 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
-            if (data != null) {
+            if(data != null) {
+                var ed1 = findViewById<EditText>(R.id.editTextTextPersonName8)
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
-            }else{
-                val i = Intent(this, EditCheck::class.java)
+            }else {
+                val i = Intent(this,EditCheck::class.java)
                 startActivity(i)
                 super.onActivityResult(requestCode, resultCode, data)
             }
-
         }
     }
 
@@ -135,8 +124,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
-
-
+    @SuppressLint("WrongThread")
     override fun onBackPressed() {
         val i = Intent()
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
@@ -149,7 +137,11 @@ class EditProfileActivity : AppCompatActivity() {
         var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
         var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
 
-        i.putExtra("image",img.drawToBitmap())
+        var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
+        var bt: ByteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
+        i.putExtra("image",bt.toByteArray())
+
         i.putExtra("Name", ed1.text.toString())
         i.putExtra("Nickname",ed2.text.toString())
         i.putExtra("email",ed3.text.toString())

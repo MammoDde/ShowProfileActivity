@@ -2,14 +2,18 @@ package it.polito.showprofileactivity
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.graphics.createBitmap
 
 class MainActivity : AppCompatActivity() {
 
@@ -59,6 +63,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var tv1: TextView = findViewById(R.id.textView)
         var tv2: TextView = findViewById(R.id.textView2)
         var tv3: TextView = findViewById(R.id.textView3)
@@ -77,6 +82,9 @@ class MainActivity : AppCompatActivity() {
             var str6: String? = data.getStringExtra("skill2")
             var str7: String? = data.getStringExtra("description1")
             var str8: String? = data.getStringExtra("description2")
+
+            var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
+            img.setImageBitmap(bitmap)
             tv1.setText(str1)
             tv2.setText(str2)
             tv3.setText(str3)
