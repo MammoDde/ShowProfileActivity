@@ -6,8 +6,6 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import android.media.Image
-import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
@@ -16,12 +14,9 @@ import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
-import androidx.core.content.FileProvider
-import androidx.core.graphics.drawable.toBitmap
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
 import java.io.File
-import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -45,14 +40,14 @@ class EditProfileActivity : AppCompatActivity() {
         var skill2: String? = intent.getStringExtra("skill2")
         var desc1: String? = intent.getStringExtra("description1")
         var desc2: String? = intent.getStringExtra("description2")
-        var ed1: EditText = findViewById<EditText>(R.id.editTextTextPersonName8)
-        var ed2: EditText = findViewById<EditText>(R.id.editTextTextPersonName9)
-        var ed3: EditText = findViewById<EditText>(R.id.editTextTextEmailAddress3)
-        var ed4: EditText = findViewById<EditText>(R.id.editTextTextPersonName10)
-        var ed5: EditText = findViewById<EditText>(R.id.editTextTextPersonName11)
-        var ed6: EditText = findViewById<EditText>(R.id.editTextTextPersonName16)
-        var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
-        var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
+        var ed1: EditText = findViewById<EditText>(R.id.edit_fullname)
+        var ed2: EditText = findViewById<EditText>(R.id.edit_nickname)
+        var ed3: EditText = findViewById<EditText>(R.id.edit_email)
+        var ed4: EditText = findViewById<EditText>(R.id.edit_location)
+        var ed5: EditText = findViewById<EditText>(R.id.edit_skill1)
+        var ed6: EditText = findViewById<EditText>(R.id.edit_skill2)
+        var ed7: EditText = findViewById<EditText>(R.id.edit_description1)
+        var ed8: EditText = findViewById<EditText>(R.id.edit_description2)
 
         var bitmap: Bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("image"),0,intent.getByteArrayExtra("image")!!.size)
         img.setImageBitmap(bitmap)
@@ -101,7 +96,7 @@ class EditProfileActivity : AppCompatActivity() {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(data != null) {
-                var ed1 = findViewById<EditText>(R.id.editTextTextPersonName8)
+                var ed1 = findViewById<EditText>(R.id.edit_fullname)
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
             }else {
@@ -131,14 +126,14 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val i = Intent()
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
-        var ed1 = findViewById<EditText>(R.id.editTextTextPersonName8)
-        var ed2: EditText = findViewById<EditText>(R.id.editTextTextPersonName9)
-        var ed3: EditText = findViewById<EditText>(R.id.editTextTextEmailAddress3)
-        var ed4: EditText = findViewById<EditText>(R.id.editTextTextPersonName10)
-        var ed5: EditText = findViewById<EditText>(R.id.editTextTextPersonName11)
-        var ed6: EditText = findViewById<EditText>(R.id.editTextTextPersonName16)
-        var ed7: EditText = findViewById<EditText>(R.id.editTextTextMultiLine)
-        var ed8: EditText = findViewById<EditText>(R.id.editTextTextMultiLine2)
+        var ed1 = findViewById<EditText>(R.id.edit_fullname)
+        var ed2: EditText = findViewById<EditText>(R.id.edit_nickname)
+        var ed3: EditText = findViewById<EditText>(R.id.edit_email)
+        var ed4: EditText = findViewById<EditText>(R.id.edit_location)
+        var ed5: EditText = findViewById<EditText>(R.id.edit_skill1)
+        var ed6: EditText = findViewById<EditText>(R.id.edit_skill2)
+        var ed7: EditText = findViewById<EditText>(R.id.edit_description1)
+        var ed8: EditText = findViewById<EditText>(R.id.edit_description2)
 
         var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
         var bt: ByteArrayOutputStream = ByteArrayOutputStream()
