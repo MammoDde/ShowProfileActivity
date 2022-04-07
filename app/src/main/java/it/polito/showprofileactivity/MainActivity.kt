@@ -1,9 +1,14 @@
 package it.polito.showprofileactivity
 
+import android.annotation.SuppressLint
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.provider.Settings
+import android.provider.Settings.Global.putInt
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,12 +17,56 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
+import java.io.File
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+        /*var sharedPref = getSharedPreferences("MyPref",Context.MODE_PRIVATE)
+        var fullname = sharedPref.getString("fullname", getString(R.string.mario_rossi))
+
+
+*/
+        /*val filename = "myfile"
+        openFileInput(filename).bufferedReader().useLines { lines ->
+            lines.fold("") { some, text ->
+                "$some\n$text"
+            }
+        }*/
+        val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val defaultValue = getString(R.string.mario22)
+
+        val fullname = sharedPrefR.getString(getString(R.string.full_name), defaultValue)
+        val nickname = sharedPrefR.getString(getString(R.string.nickname), defaultValue)
+        val email = sharedPrefR.getString(getString(R.string.email), defaultValue)
+        val location = sharedPrefR.getString(getString(R.string.location), defaultValue)
+        val skill1 = sharedPrefR.getString(getString(R.string.skill1), defaultValue)
+        val description1 = sharedPrefR.getString(getString(R.string.description1), defaultValue)
+        val skill2 = sharedPrefR.getString(getString(R.string.skill2), defaultValue)
+        val description2 = sharedPrefR.getString(getString(R.string.description2), defaultValue)
+
+        var tv1: TextView = findViewById(R.id.fullname)
+        var tv2: TextView = findViewById(R.id.nickname)
+        var tv3: TextView = findViewById(R.id.email)
+        var tv4: TextView = findViewById(R.id.location)
+        var tv5: TextView = findViewById(R.id.skill1)
+        var tv6: TextView = findViewById(R.id.skill2)
+        var tv7: TextView = findViewById(R.id.description1)
+        var tv8: TextView = findViewById(R.id.description2)
+
+        tv1.setText(fullname)
+        tv2.setText(nickname)
+        tv3.setText(email)
+        tv4.setText(location)
+        tv5.setText(skill1)
+        tv6.setText(skill2)
+        tv7.setText(description1)
+        tv8.setText(description2)
+
 
     }
 
@@ -66,6 +115,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        val filename = "myfile"
+        val fileContents = "Hello world!"
+        openFileOutput(filename, Context.MODE_PRIVATE).use {
+            it.write(fileContents.toByteArray())
+        }
+        val file = File(filesDir, filename)
+
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var tv1: TextView = findViewById(R.id.fullname)
         var tv2: TextView = findViewById(R.id.nickname)
@@ -86,6 +143,20 @@ class MainActivity : AppCompatActivity() {
             var str7: String? = data.getStringExtra("description1")
             var str8: String? = data.getStringExtra("description2")
 
+        val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        with (sharedPref.edit()) {
+           putString(getString(R.string.full_name), str1)
+            putString(getString(R.string.nickname), str2)
+            putString(getString(R.string.email), str3)
+            putString(getString(R.string.location), str4)
+            putString(getString(R.string.skill1), str5)
+            putString(getString(R.string.skill2), str6)
+            putString(getString(R.string.description1), str7)
+            putString(getString(R.string.description2), str8)
+
+            apply()
+        }
+
             var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
             img.setImageBitmap(bitmap)
             tv1.setText(str1)
@@ -105,6 +176,9 @@ class MainActivity : AppCompatActivity() {
             tv6.setText("error")
             tv7.setText("error")
             tv8.setText("error")
+
+
+
 
 
         }
