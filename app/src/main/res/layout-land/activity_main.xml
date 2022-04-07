@@ -1,135 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="16dp"
-    android:layout_marginRight="16dp"
-    android:orientation="horizontal"
-    tools:context=".MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_marginEnd="16dp"
-        android:layout_weight="2"
-        android:background="#0080B66D"
-        android:contentDescription="@string/image_profile"
-        app:srcCompat="@drawable/avatr"
-        tools:ignore="ImageContrastCheck"
-        tools:srcCompat="@drawable/avatr" />
-
-    <LinearLayout
-        android:id="@+id/listHorizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_weight="2"
-        android:orientation="vertical">
+        android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/constraintLayout"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/avatr" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_weight="2"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="match_parent"
+            android:freezesText="true"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:contentDescription="@string/full_name"
             android:text="@string/mario_rossi"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/constraintLayout"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView2"
-            android:layout_width="match_parent"
+            android:freezesText="true"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:contentDescription="@string/nickname"
             android:text="@string/mario22"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/textView4"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/corso_duca_degli_abruzzi_torino"
-            android:text="@string/corso_duca_degli_abruzzi_torino"
-            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="match_parent"
+            android:freezesText="true"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:contentDescription="@string/email"
+            android:layout_marginTop="3dp"
             android:text="@string/mario_rossi_polito_it"
+            android:contentDescription="@string/email"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            app:layout_constraintBottom_toTopOf="@+id/textView4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:freezesText="true"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:text="@string/corso_duca_degli_abruzzi_torino"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintBottom_toTopOf="@id/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            android:layout_height="3dp"
-            android:layout_marginTop="16dp"
-            android:background="?android:attr/listDivider" />
+            android:layout_height="1dp"
+            android:layout_marginTop="6dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView4" />
 
         <TextView
-            android:id="@+id/textView11"
-            android:layout_width="match_parent"
+            android:id="@+id/textView5"
+            android:freezesText="true"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:text="@string/skills"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-            android:textSize="20sp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider" />
 
-        <TableLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/textView12"
+            android:freezesText="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/english"
+            android:contentDescription="@string/skill1"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView5" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="textView12, textView14"
+            tools:layout_editor_absoluteX="45dp" />
 
-                <TextView
-                    android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/english"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="20sp" />
+        <TextView
+            android:id="@+id/textView13"
+            android:freezesText="true"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:contentDescription="@string/description1"
+            android:text="@string/a_good_english_teacher"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintTop_toBottomOf="@id/textView5" />
 
-                <TextView
-                    android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/a_good_english_teacher"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="20sp" />
-            </TableRow>
+        <TextView
+            android:id="@+id/textView14"
+            android:freezesText="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/babysitting"
+            android:contentDescription="@string/skill2"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textView12" />
 
-            <TableRow
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    android:text="@string/babysitting"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-                    android:textSize="20sp" />
-
-                <TextView
-                    android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/i_take_care_of_baby"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="20sp" />
-            </TableRow>
-
-        </TableLayout>
-
-    </LinearLayout>
-
-
-</LinearLayout>
+        <TextView
+            android:id="@+id/textView9"
+            android:freezesText="true"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="@string/i_take_care_of_baby"
+            android:contentDescription="@string/description2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@id/barrier"
+            app:layout_constraintTop_toBottomOf="@id/textView13" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

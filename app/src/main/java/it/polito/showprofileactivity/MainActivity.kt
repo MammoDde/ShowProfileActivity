@@ -1,19 +1,15 @@
 package it.polito.showprofileactivity
 
-import android.app.Activity
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.activity.result.contract.ActivityResultContract
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.graphics.createBitmap
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
 
@@ -116,5 +112,14 @@ class MainActivity : AppCompatActivity() {
 
     }
 
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        // Read values from the "savedInstanceState"-object and put them in your textview
+    }
+
+      override fun onSaveInstanceState(outState: Bundle) {
+        // Save the values you need from your textview into "outState"-object
+        super.onSaveInstanceState(outState)
+    }
 }
 
