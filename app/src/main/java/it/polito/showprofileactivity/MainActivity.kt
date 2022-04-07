@@ -4,6 +4,7 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -12,12 +13,24 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileNotFoundException
+
+private var currentPhotoPath: String = "empty"
 
 class MainActivity : AppCompatActivity() {
+    var newProfile: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var img: ImageView = findViewById<ImageView>(R.id.imageView)
+
+        if(currentPhotoPath != "empty"){
+            var bitmap: Bitmap? = loadImageFromStorage(currentPhotoPath, "icon.jpg")
+            img.setImageBitmap(bitmap)
+        }
 
     }
 
@@ -38,6 +51,30 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    //Retrieve Image
+    private fun loadImageFromStorage(path: String?, imageName : String) : Bitmap? {
+
+        //Try to get the file from the bitmap
+        try {
+
+            //Get the file and load the bitmap
+            val f = File(path, imageName);
+            val b = BitmapFactory.decodeStream(FileInputStream(f))
+
+            return b;
+
+            /*
+            val img: ImageView = findViewById(R.id.imgPicker) as ImageView
+            img.setImageBitmap(b)
+             */
+        }
+        catch (e: FileNotFoundException) {
+            //e.printStackTrace()
+            Log.i("error", "file not found!")
+        }
+
+        return null;
+    }
     private fun editProfile(){
         val i = Intent(this,EditProfileActivity::class.java)
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
@@ -86,7 +123,9 @@ class MainActivity : AppCompatActivity() {
             var str7: String? = data.getStringExtra("description1")
             var str8: String? = data.getStringExtra("description2")
 
-            var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
+            currentPhotoPath = data.getStringExtra("path").toString()
+            var bitmap: Bitmap? = loadImageFromStorage(currentPhotoPath, "icon.jpg")
+            //var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
             img.setImageBitmap(bitmap)
             tv1.setText(str1)
             tv2.setText(str2)

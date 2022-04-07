@@ -3,25 +3,31 @@ package it.polito.showprofileactivity
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.drawToBitmap
+import com.android.volley.toolbox.ImageLoader
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
 import java.util.*
 
 private const val REQUEST_IMAGE_CAPTURE = 1
-private const val name = "photoG20.jpg"
+private const val name = "icon.jpg"
 private lateinit var photoFile: File
 private lateinit var currentPhotoPath: String
 
@@ -99,12 +105,53 @@ class EditProfileActivity : AppCompatActivity() {
                 var ed1 = findViewById<EditText>(R.id.edit_fullname)
                 val imageBitmap = data?.extras?.get("data") as Bitmap
                 image.setImageBitmap(imageBitmap)
+
+                currentPhotoPath =  saveToInternalStorage(imageBitmap, "imageDir", name)
             }else {
                 val i = Intent(this,EditCheck::class.java)
                 startActivity(i)
                 super.onActivityResult(requestCode, resultCode, data)
             }
         }
+    }
+
+    private fun saveToInternalStorage(bitmapImage : Bitmap, dir : String, imageName : String ): String {
+
+        // path to /data/data/yourapp/app_data/imageDir
+        val directory : File = getDir(dir, Context.MODE_PRIVATE)
+
+        // Create imageDir
+        val mypath : File = File(directory, imageName)
+        var fos : FileOutputStream? = null
+
+        try {
+            fos = FileOutputStream(mypath)
+
+            // Use the compress method on the BitMap object to write image to the OutputStream
+            bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
+
+        }
+        catch (e: Exception) {
+            //e.printStackTrace()
+
+            //Check for it
+            Log.i("error", "image can't be saved!")
+        }
+        finally {
+
+            //Close the stream
+            try {
+                fos?.close()
+            }
+            catch (e: IOException) {
+
+                //e.printStackTrace()
+                Log.i("error", "stream can't be closed!")
+            }
+        }
+
+        //Return the path
+        return directory.getAbsolutePath()
     }
 
     private fun createImageFile(): File {
@@ -148,6 +195,8 @@ class EditProfileActivity : AppCompatActivity() {
         i.putExtra("skill2",ed6.text.toString())
         i.putExtra("description1",ed7.text.toString())
         i.putExtra("description2",ed8.text.toString())
+
+        i.putExtra("path", currentPhotoPath)
         setResult(Activity.RESULT_OK,i)
 
         super.onBackPressed()
