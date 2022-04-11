@@ -25,6 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //push
 
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val defaultValue = getString(R.string.mario22)
