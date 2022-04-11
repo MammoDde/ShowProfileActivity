@@ -42,14 +42,14 @@ class MainActivity : AppCompatActivity() {
         val tv7: TextView = findViewById(R.id.description1)
         val tv8: TextView = findViewById(R.id.description2)
 
-        tv1.setText(json.get("full name").toString())
-        tv2.setText(json.get("nickname").toString())
-        tv3.setText(json.get("email").toString())
-        tv4.setText(json.get("location").toString())
-        tv5.setText(json.get("skill1").toString())
-        tv6.setText(json.get("skill2").toString())
-        tv7.setText(json.get("description1").toString())
-        tv8.setText(json.get("description2").toString())
+        tv1.text = json.get("full name").toString()
+        tv2.text = (json.get("nickname").toString())
+        tv3.text = (json.get("email").toString())
+        tv4.text = (json.get("location").toString())
+        tv5.text = (json.get("skill1").toString())
+        tv6.text = (json.get("skill2").toString())
+        tv7.text = (json.get("description1").toString())
+        tv8.text = (json.get("description2").toString())
         currentPhotoPath = json.get("path").toString()
 
         if(currentPhotoPath != null){
@@ -140,23 +140,23 @@ class MainActivity : AppCompatActivity() {
                 apply()
             }
 
-            tv1.setText(str1)
-            tv2.setText(str2)
-            tv3.setText(str3)
-            tv4.setText(str4)
-            tv5.setText(str5)
-            tv6.setText(str6)
-            tv7.setText(str7)
-            tv8.setText(str8)
+            tv1.text = str1
+            tv2.text = str2
+            tv3.text = str3
+            tv4.text = str4
+            tv5.text = str5
+            tv6.text = str6
+            tv7.text = str7
+            tv8.text = str8
         } else {
-            tv1.setText("error")
-            tv2.setText("error")
-            tv3.setText("error")
-            tv4.setText("error")
-            tv5.setText("error")
-            tv6.setText("error")
-            tv7.setText("error")
-            tv8.setText("error")
+            tv1.text = "error"
+            tv2.text = "error"
+            tv3.text = "error"
+            tv4.text = "error"
+            tv5.text = "error"
+            tv6.text = "error"
+            tv7.text = "error"
+            tv8.text = "error"
         }
         super.onActivityResult(requestCode, resultCode, data)
 
