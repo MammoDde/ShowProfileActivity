@@ -18,36 +18,18 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
 import java.io.File
+import org.json.JSONObject
+
 
 class MainActivity : AppCompatActivity() {
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        /*var sharedPref = getSharedPreferences("MyPref",Context.MODE_PRIVATE)
-        var fullname = sharedPref.getString("fullname", getString(R.string.mario_rossi))
-
-
-*/
-        /*val filename = "myfile"
-        openFileInput(filename).bufferedReader().useLines { lines ->
-            lines.fold("") { some, text ->
-                "$some\n$text"
-            }
-        }*/
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val defaultValue = getString(R.string.mario22)
 
-        val fullname = sharedPrefR.getString(getString(R.string.full_name), defaultValue)
-        val nickname = sharedPrefR.getString(getString(R.string.nickname), defaultValue)
-        val email = sharedPrefR.getString(getString(R.string.email), defaultValue)
-        val location = sharedPrefR.getString(getString(R.string.location), defaultValue)
-        val skill1 = sharedPrefR.getString(getString(R.string.skill1), defaultValue)
-        val description1 = sharedPrefR.getString(getString(R.string.description1), defaultValue)
-        val skill2 = sharedPrefR.getString(getString(R.string.skill2), defaultValue)
-        val description2 = sharedPrefR.getString(getString(R.string.description2), defaultValue)
+        val json = JSONObject(sharedPrefR.getString("profile", defaultValue))
 
         var tv1: TextView = findViewById(R.id.fullname)
         var tv2: TextView = findViewById(R.id.nickname)
@@ -58,16 +40,14 @@ class MainActivity : AppCompatActivity() {
         var tv7: TextView = findViewById(R.id.description1)
         var tv8: TextView = findViewById(R.id.description2)
 
-        tv1.setText(fullname)
-        tv2.setText(nickname)
-        tv3.setText(email)
-        tv4.setText(location)
-        tv5.setText(skill1)
-        tv6.setText(skill2)
-        tv7.setText(description1)
-        tv8.setText(description2)
-
-
+        tv1.setText(json.get("full name").toString())
+        tv2.setText(json.get("nickname").toString())
+        tv3.setText(json.get("email").toString())
+        tv4.setText(json.get("location").toString())
+        tv5.setText(json.get("skill1").toString())
+        tv6.setText(json.get("skill2").toString())
+        tv7.setText(json.get("description1").toString())
+        tv8.setText(json.get("description2").toString())
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -110,18 +90,10 @@ class MainActivity : AppCompatActivity() {
         i.putExtra("skill2",tv6.text)
         i.putExtra("description1",tv7.text)
         i.putExtra("description2",tv8.text)
-        //launcher.launch(i)
         startActivityForResult(i,123)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        val filename = "myfile"
-        val fileContents = "Hello world!"
-        openFileOutput(filename, Context.MODE_PRIVATE).use {
-            it.write(fileContents.toByteArray())
-        }
-        val file = File(filesDir, filename)
 
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var tv1: TextView = findViewById(R.id.fullname)
@@ -143,19 +115,18 @@ class MainActivity : AppCompatActivity() {
             var str7: String? = data.getStringExtra("description1")
             var str8: String? = data.getStringExtra("description2")
 
-        val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-           putString(getString(R.string.full_name), str1)
-            putString(getString(R.string.nickname), str2)
-            putString(getString(R.string.email), str3)
-            putString(getString(R.string.location), str4)
-            putString(getString(R.string.skill1), str5)
-            putString(getString(R.string.skill2), str6)
-            putString(getString(R.string.description1), str7)
-            putString(getString(R.string.description2), str8)
 
-            apply()
-        }
+            val profileInfo = "{'full name' : '$str1', nickname : '$str2', " +
+                    "email : '$str3', location : '$str4', skill1 : '$str5'," +
+                    " skill2 : '$str6', description1 : '$str7', " +
+                    "description2 : '$str8'}"
+            val json = JSONObject(profileInfo)
+
+            val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+            with (sharedPref.edit()) {
+                putString("profile", json.toString())
+                apply()
+            }
 
             var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
             img.setImageBitmap(bitmap)
@@ -176,11 +147,6 @@ class MainActivity : AppCompatActivity() {
             tv6.setText("error")
             tv7.setText("error")
             tv8.setText("error")
-
-
-
-
-
         }
         super.onActivityResult(requestCode, resultCode, data)
 
