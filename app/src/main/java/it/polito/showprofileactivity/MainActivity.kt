@@ -23,27 +23,24 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val img: ImageView = findViewById(R.id.imageView)
 
-        if(currentPhotoPath != null){
-            val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
-            img.setImageBitmap(bitmap)
-        }
+
 
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
                 " skill2 : '${getString(R.string.skill2)}', description1 : '${getString(R.string.description1)}', " +
-                "description2 : '${getString(R.string.description2)}'}"
+                "description2 : '${getString(R.string.description2)}', " + "path: '${currentPhotoPath}'}"
 
         val json = JSONObject(sharedPrefR.getString("profile", profileInfo))
 
-        var tv1: TextView = findViewById(R.id.fullname)
-        var tv2: TextView = findViewById(R.id.nickname)
-        var tv3: TextView = findViewById(R.id.email)
-        var tv4: TextView = findViewById(R.id.location)
-        var tv5: TextView = findViewById(R.id.skill1)
-        var tv6: TextView = findViewById(R.id.skill2)
-        var tv7: TextView = findViewById(R.id.description1)
-        var tv8: TextView = findViewById(R.id.description2)
+        val tv1: TextView = findViewById(R.id.fullname)
+        val tv2: TextView = findViewById(R.id.nickname)
+        val tv3: TextView = findViewById(R.id.email)
+        val tv4: TextView = findViewById(R.id.location)
+        val tv5: TextView = findViewById(R.id.skill1)
+        val tv6: TextView = findViewById(R.id.skill2)
+        val tv7: TextView = findViewById(R.id.description1)
+        val tv8: TextView = findViewById(R.id.description2)
 
         tv1.setText(json.get("full name").toString())
         tv2.setText(json.get("nickname").toString())
@@ -53,6 +50,13 @@ class MainActivity : AppCompatActivity() {
         tv6.setText(json.get("skill2").toString())
         tv7.setText(json.get("description1").toString())
         tv8.setText(json.get("description2").toString())
+        currentPhotoPath = json.get("path").toString()
+
+        if(currentPhotoPath != null){
+            val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+            img.setImageBitmap(bitmap)
+        }
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -118,22 +122,22 @@ class MainActivity : AppCompatActivity() {
             val str8: String? = data.getStringExtra("description2")
 
 
+            currentPhotoPath = data.getStringExtra("path")
+            if(currentPhotoPath != null) {
+                var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+                img.setImageBitmap(bitmap)
+            }
+
             val profileInfo = "{'full name' : '$str1', nickname : '$str2', " +
                     "email : '$str3', location : '$str4', skill1 : '$str5'," +
                     " skill2 : '$str6', description1 : '$str7', " +
-                    "description2 : '$str8'}"
+                    "description2 : '$str8', " + "path: '${currentPhotoPath}'}"
             val json = JSONObject(profileInfo)
 
             val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
             with (sharedPref.edit()) {
                 putString("profile", json.toString())
                 apply()
-            }
-
-            currentPhotoPath = data.getStringExtra("path")
-            if(currentPhotoPath != null) {
-                var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
-                img.setImageBitmap(bitmap)
             }
 
             tv1.setText(str1)
