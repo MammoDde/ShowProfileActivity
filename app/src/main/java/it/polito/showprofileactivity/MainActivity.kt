@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity() {
             val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
         }
-        //push
 
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
