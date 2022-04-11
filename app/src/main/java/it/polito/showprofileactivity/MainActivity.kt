@@ -97,6 +97,7 @@ class MainActivity : AppCompatActivity() {
         if(currentPhotoPath != null){
             var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
+            i.putExtra("path", currentPhotoPath)
         } else {
             var b: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
             var bt = ByteArrayOutputStream()
@@ -149,8 +150,6 @@ class MainActivity : AppCompatActivity() {
                 apply()
             }
 
-            var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
-            img.setImageBitmap(bitmap)
             currentPhotoPath = data.getStringExtra("path")
 
             if(currentPhotoPath != null) {
