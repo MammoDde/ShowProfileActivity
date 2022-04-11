@@ -7,7 +7,6 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.widget.EditText
 import android.widget.ImageButton
@@ -16,22 +15,22 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.drawToBitmap
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.text.SimpleDateFormat
-import java.util.*
 
 private const val REQUEST_IMAGE_CAPTURE = 1
-private const val name = "photoG20.jpg"
-private lateinit var photoFile: File
-private lateinit var currentPhotoPath: String
+private const val REQUEST_ACTION_PICK = 2
+
+private const val name = "icon"
+private var currentPhotoPath: String = "empty"
 
 class EditProfileActivity : AppCompatActivity() {
+
+    var photo: Photo = Photo()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
         var editButton: ImageButton = findViewById(R.id.imageButton2)
-        var img: ImageView = findViewById<ImageView>(R.id.imageView)
+        var img: ImageView = findViewById(R.id.imageView)
         var name: String? = intent.getStringExtra("Name")
         var nick: String? = intent.getStringExtra("Nickname")
         var email: String? = intent.getStringExtra("email")
@@ -40,17 +39,24 @@ class EditProfileActivity : AppCompatActivity() {
         var skill2: String? = intent.getStringExtra("skill2")
         var desc1: String? = intent.getStringExtra("description1")
         var desc2: String? = intent.getStringExtra("description2")
-        var ed1: EditText = findViewById<EditText>(R.id.edit_fullname)
-        var ed2: EditText = findViewById<EditText>(R.id.edit_nickname)
-        var ed3: EditText = findViewById<EditText>(R.id.edit_email)
-        var ed4: EditText = findViewById<EditText>(R.id.edit_location)
-        var ed5: EditText = findViewById<EditText>(R.id.edit_skill1)
-        var ed6: EditText = findViewById<EditText>(R.id.edit_skill2)
-        var ed7: EditText = findViewById<EditText>(R.id.edit_description1)
-        var ed8: EditText = findViewById<EditText>(R.id.edit_description2)
+        var ed1: EditText = findViewById(R.id.edit_fullname)
+        var ed2: EditText = findViewById(R.id.edit_nickname)
+        var ed3: EditText = findViewById(R.id.edit_email)
+        var ed4: EditText = findViewById(R.id.edit_location)
+        var ed5: EditText = findViewById(R.id.edit_skill1)
+        var ed6: EditText = findViewById(R.id.edit_skill2)
+        var ed7: EditText = findViewById(R.id.edit_description1)
+        var ed8: EditText = findViewById(R.id.edit_description2)
 
-        var bitmap: Bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("image"),0,intent.getByteArrayExtra("image")!!.size)
-        img.setImageBitmap(bitmap)
+        if (intent.getStringExtra("path") != null && intent.getStringExtra("path") != "empty"){
+            currentPhotoPath = intent.getStringExtra("path").toString()
+            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+            img.setImageBitmap(bitmap)
+        } else {
+            var bitmap: Bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("image"),0,intent.getByteArrayExtra("image")!!.size)
+            img.setImageBitmap(bitmap)
+        }
+
         ed1.setText(name)
         ed2.setText(nick)
         ed3.setText(email)
@@ -59,7 +65,6 @@ class EditProfileActivity : AppCompatActivity() {
         ed6.setText(skill2)
         ed7.setText(desc1)
         ed8.setText(desc2)
-
 
         editButton.setOnClickListener {
             val popupMenu = PopupMenu(this, it)
@@ -72,14 +77,12 @@ class EditProfileActivity : AppCompatActivity() {
                         }catch (e : ActivityNotFoundException){
                             println(e)
                         }
-                                // Continue only if the File was successfully created
-
                         true
                     }
                     R.id.menu_open_gallery -> {
-                        val galleryIntent = Intent(Intent.ACTION_GET_CONTENT)
+                        val galleryIntent = Intent(Intent.ACTION_PICK)
                         galleryIntent.type = "image/*"
-                        startActivity(galleryIntent);
+                        startActivityForResult(galleryIntent, REQUEST_ACTION_PICK);
                         true
                     }
                     else -> false
@@ -96,49 +99,39 @@ class EditProfileActivity : AppCompatActivity() {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(data != null) {
-                var ed1 = findViewById<EditText>(R.id.edit_fullname)
                 val imageBitmap = data?.extras?.get("data") as Bitmap
+
+                // set bitmap of edit view
                 image.setImageBitmap(imageBitmap)
+
+                // save image to Internal Storage
+                currentPhotoPath = photo.saveToInternalStorage(imageBitmap, this, "imageDir", name)
             }else {
                 val i = Intent(this,EditCheck::class.java)
                 startActivity(i)
                 super.onActivityResult(requestCode, resultCode, data)
             }
         }
-    }
-
-    private fun createImageFile(): File {
-        // Create an image file name
-        val timeStamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
-        val storageDir: File? = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
-        return File.createTempFile(
-            "JPEG_${timeStamp}_", /* prefix */
-            ".jpg", /* suffix */
-            storageDir /* directory */
-        ).apply {
-            // Save a file: path for use with ACTION_VIEW intents
-            currentPhotoPath = absolutePath
+        if(requestCode == REQUEST_ACTION_PICK && resultCode == RESULT_OK){
+            image.setImageURI(data?.data)
         }
     }
-
 
     @SuppressLint("WrongThread")
     override fun onBackPressed() {
         val i = Intent()
+
         var img: ImageView = findViewById<ImageView>(R.id.imageView)
         var ed1 = findViewById<EditText>(R.id.edit_fullname)
-        var ed2: EditText = findViewById<EditText>(R.id.edit_nickname)
-        var ed3: EditText = findViewById<EditText>(R.id.edit_email)
-        var ed4: EditText = findViewById<EditText>(R.id.edit_location)
-        var ed5: EditText = findViewById<EditText>(R.id.edit_skill1)
-        var ed6: EditText = findViewById<EditText>(R.id.edit_skill2)
-        var ed7: EditText = findViewById<EditText>(R.id.edit_description1)
-        var ed8: EditText = findViewById<EditText>(R.id.edit_description2)
+        var ed2: EditText = findViewById(R.id.edit_nickname)
+        var ed3: EditText = findViewById(R.id.edit_email)
+        var ed4: EditText = findViewById(R.id.edit_location)
+        var ed5: EditText = findViewById(R.id.edit_skill1)
+        var ed6: EditText = findViewById(R.id.edit_skill2)
+        var ed7: EditText = findViewById(R.id.edit_description1)
+        var ed8: EditText = findViewById(R.id.edit_description2)
 
-        var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
-        var bt: ByteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
-        i.putExtra("image",bt.toByteArray())
+
 
         i.putExtra("Name", ed1.text.toString())
         i.putExtra("Nickname",ed2.text.toString())
@@ -148,6 +141,16 @@ class EditProfileActivity : AppCompatActivity() {
         i.putExtra("skill2",ed6.text.toString())
         i.putExtra("description1",ed7.text.toString())
         i.putExtra("description2",ed8.text.toString())
+
+        if(currentPhotoPath != "empty"){
+            i.putExtra("path", currentPhotoPath)
+        }else{
+            var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
+            var bt = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
+            i.putExtra("image",bt.toByteArray())
+        }
+
         setResult(Activity.RESULT_OK,i)
 
         super.onBackPressed()

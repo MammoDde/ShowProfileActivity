@@ -21,10 +21,21 @@ import java.io.File
 import org.json.JSONObject
 
 
+private var currentPhotoPath: String? = null
+
 class MainActivity : AppCompatActivity() {
+
+    var photo: Photo = Photo()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var img: ImageView = findViewById(R.id.imageView)
+
+        if(currentPhotoPath != null){
+            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+            img.setImageBitmap(bitmap)
+        }
         //push
 
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
@@ -73,7 +84,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun editProfile(){
         val i = Intent(this,EditProfileActivity::class.java)
-        var img: ImageView = findViewById<ImageView>(R.id.imageView)
+        var img: ImageView = findViewById(R.id.imageView)
         var tv1: TextView = findViewById(R.id.fullname)
         var tv2: TextView = findViewById(R.id.nickname)
         var tv3: TextView = findViewById(R.id.email)
@@ -82,10 +93,17 @@ class MainActivity : AppCompatActivity() {
         var tv6: TextView = findViewById(R.id.skill2)
         var tv7: TextView = findViewById(R.id.description1)
         var tv8: TextView = findViewById(R.id.description2)
-        var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
-        var bt: ByteArrayOutputStream = ByteArrayOutputStream()
-        bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
-        i.putExtra("image",bt.toByteArray())
+
+        if(currentPhotoPath != null){
+            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+            img.setImageBitmap(bitmap)
+        } else {
+            var b: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
+            var bt = ByteArrayOutputStream()
+            b.compress(Bitmap.CompressFormat.PNG,100,bt)
+            i.putExtra("image",bt.toByteArray())
+        }
+
         i.putExtra("Name",tv1.text)
         i.putExtra("Nickname",tv2.text)
         i.putExtra("email",tv3.text)
@@ -98,8 +116,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-
-        var img: ImageView = findViewById<ImageView>(R.id.imageView)
+        var img: ImageView = findViewById(R.id.imageView)
         var tv1: TextView = findViewById(R.id.fullname)
         var tv2: TextView = findViewById(R.id.nickname)
         var tv3: TextView = findViewById(R.id.email)
@@ -134,6 +151,13 @@ class MainActivity : AppCompatActivity() {
 
             var bitmap: Bitmap = BitmapFactory.decodeByteArray(data.getByteArrayExtra("image"),0,data.getByteArrayExtra("image")!!.size)
             img.setImageBitmap(bitmap)
+            currentPhotoPath = data.getStringExtra("path")
+
+            if(currentPhotoPath != null) {
+                var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+                img.setImageBitmap(bitmap)
+            }
+
             tv1.setText(str1)
             tv2.setText(str2)
             tv3.setText(str3)
@@ -156,14 +180,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
-        super.onRestoreInstanceState(savedInstanceState)
-        // Read values from the "savedInstanceState"-object and put them in your textview
-    }
-
-      override fun onSaveInstanceState(outState: Bundle) {
-        // Save the values you need from your textview into "outState"-object
-        super.onSaveInstanceState(outState)
-    }
 }
 
