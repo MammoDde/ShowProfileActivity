@@ -28,9 +28,12 @@ class MainActivity : AppCompatActivity() {
         //push
 
         val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
-        val defaultValue = getString(R.string.mario22)
+        val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
+                "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
+                " skill2 : '${getString(R.string.skill2)}', description1 : '${getString(R.string.description1)}', " +
+                "description2 : '${getString(R.string.description2)}'}"
 
-        val json = JSONObject(sharedPrefR.getString("profile", defaultValue))
+        val json = JSONObject(sharedPrefR.getString("profile", profileInfo))
 
         var tv1: TextView = findViewById(R.id.fullname)
         var tv2: TextView = findViewById(R.id.nickname)
