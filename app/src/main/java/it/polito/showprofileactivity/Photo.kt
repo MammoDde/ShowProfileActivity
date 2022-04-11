@@ -9,7 +9,6 @@ import java.io.*
 
 
 class Photo {
-    var currentPhotoPath: String = "empty"
 
     //Save Image
     fun saveToInternalStorage(bitmapImage : Bitmap, cw : ContextWrapper, dir : String, imageName : String ): String {

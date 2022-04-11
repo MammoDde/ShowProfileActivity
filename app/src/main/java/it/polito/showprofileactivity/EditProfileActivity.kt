@@ -6,6 +6,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.EditText
@@ -14,13 +15,12 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.view.drawToBitmap
-import java.io.ByteArrayOutputStream
 
 private const val REQUEST_IMAGE_CAPTURE = 1
 private const val REQUEST_ACTION_PICK = 2
 
 private const val name = "icon"
-private var currentPhotoPath: String = "empty"
+private var currentPhotoPath: String? = null
 
 class EditProfileActivity : AppCompatActivity() {
 
@@ -29,31 +29,28 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
-        var editButton: ImageButton = findViewById(R.id.imageButton2)
-        var img: ImageView = findViewById(R.id.imageView)
-        var name: String? = intent.getStringExtra("Name")
-        var nick: String? = intent.getStringExtra("Nickname")
-        var email: String? = intent.getStringExtra("email")
-        var loc: String? = intent.getStringExtra("location")
-        var skill1: String? = intent.getStringExtra("skill1")
-        var skill2: String? = intent.getStringExtra("skill2")
-        var desc1: String? = intent.getStringExtra("description1")
-        var desc2: String? = intent.getStringExtra("description2")
-        var ed1: EditText = findViewById(R.id.edit_fullname)
-        var ed2: EditText = findViewById(R.id.edit_nickname)
-        var ed3: EditText = findViewById(R.id.edit_email)
-        var ed4: EditText = findViewById(R.id.edit_location)
-        var ed5: EditText = findViewById(R.id.edit_skill1)
-        var ed6: EditText = findViewById(R.id.edit_skill2)
-        var ed7: EditText = findViewById(R.id.edit_description1)
-        var ed8: EditText = findViewById(R.id.edit_description2)
+        val editButton: ImageButton = findViewById(R.id.imageButton2)
+        val img: ImageView = findViewById(R.id.imageView)
+        val name: String? = intent.getStringExtra("Name")
+        val nick: String? = intent.getStringExtra("Nickname")
+        val email: String? = intent.getStringExtra("email")
+        val loc: String? = intent.getStringExtra("location")
+        val skill1: String? = intent.getStringExtra("skill1")
+        val skill2: String? = intent.getStringExtra("skill2")
+        val desc1: String? = intent.getStringExtra("description1")
+        val desc2: String? = intent.getStringExtra("description2")
+        val ed1: EditText = findViewById(R.id.edit_fullname)
+        val ed2: EditText = findViewById(R.id.edit_nickname)
+        val ed3: EditText = findViewById(R.id.edit_email)
+        val ed4: EditText = findViewById(R.id.edit_location)
+        val ed5: EditText = findViewById(R.id.edit_skill1)
+        val ed6: EditText = findViewById(R.id.edit_skill2)
+        val ed7: EditText = findViewById(R.id.edit_description1)
+        val ed8: EditText = findViewById(R.id.edit_description2)
 
-        if (intent.getStringExtra("path") != null && intent.getStringExtra("path") != "empty"){
+        if (intent.getStringExtra("path") != null){
             currentPhotoPath = intent.getStringExtra("path").toString()
-            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
-            img.setImageBitmap(bitmap)
-        } else {
-            var bitmap: Bitmap = BitmapFactory.decodeByteArray(intent.getByteArrayExtra("image"),0,intent.getByteArrayExtra("image")!!.size)
+            val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
         }
 
@@ -99,7 +96,7 @@ class EditProfileActivity : AppCompatActivity() {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(data != null) {
-                val imageBitmap = data?.extras?.get("data") as Bitmap
+                val imageBitmap = data.extras?.get("data") as Bitmap
 
                 // set bitmap of edit view
                 image.setImageBitmap(imageBitmap)
@@ -113,7 +110,10 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
         if(requestCode == REQUEST_ACTION_PICK && resultCode == RESULT_OK){
-            image.setImageURI(data?.data)
+            val imageUri: Uri? = data?.data
+            image.setImageURI(imageUri)
+            val imageBitmap = image.drawToBitmap()
+            currentPhotoPath = photo.saveToInternalStorage(imageBitmap, this, "imageDir", name)
         }
     }
 
@@ -121,17 +121,14 @@ class EditProfileActivity : AppCompatActivity() {
     override fun onBackPressed() {
         val i = Intent()
 
-        var img: ImageView = findViewById<ImageView>(R.id.imageView)
-        var ed1 = findViewById<EditText>(R.id.edit_fullname)
-        var ed2: EditText = findViewById(R.id.edit_nickname)
-        var ed3: EditText = findViewById(R.id.edit_email)
-        var ed4: EditText = findViewById(R.id.edit_location)
-        var ed5: EditText = findViewById(R.id.edit_skill1)
-        var ed6: EditText = findViewById(R.id.edit_skill2)
-        var ed7: EditText = findViewById(R.id.edit_description1)
-        var ed8: EditText = findViewById(R.id.edit_description2)
-
-
+        val ed1 = findViewById<EditText>(R.id.edit_fullname)
+        val ed2: EditText = findViewById(R.id.edit_nickname)
+        val ed3: EditText = findViewById(R.id.edit_email)
+        val ed4: EditText = findViewById(R.id.edit_location)
+        val ed5: EditText = findViewById(R.id.edit_skill1)
+        val ed6: EditText = findViewById(R.id.edit_skill2)
+        val ed7: EditText = findViewById(R.id.edit_description1)
+        val ed8: EditText = findViewById(R.id.edit_description2)
 
         i.putExtra("Name", ed1.text.toString())
         i.putExtra("Nickname",ed2.text.toString())
@@ -142,14 +139,7 @@ class EditProfileActivity : AppCompatActivity() {
         i.putExtra("description1",ed7.text.toString())
         i.putExtra("description2",ed8.text.toString())
 
-        if(currentPhotoPath != "empty"){
-            i.putExtra("path", currentPhotoPath)
-        }else{
-            var bitmap: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
-            var bt = ByteArrayOutputStream()
-            bitmap.compress(Bitmap.CompressFormat.PNG,50,bt)
-            i.putExtra("image",bt.toByteArray())
-        }
+        i.putExtra("path", currentPhotoPath)
 
         setResult(Activity.RESULT_OK,i)
 

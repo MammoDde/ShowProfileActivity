@@ -1,25 +1,16 @@
 package it.polito.showprofileactivity
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import android.content.SharedPreferences
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.os.Bundle
-import android.provider.Settings
-import android.provider.Settings.Global.putInt
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.drawToBitmap
-import java.io.ByteArrayOutputStream
-import java.io.File
 import org.json.JSONObject
-
 
 private var currentPhotoPath: String? = null
 
@@ -30,10 +21,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        var img: ImageView = findViewById(R.id.imageView)
+        val img: ImageView = findViewById(R.id.imageView)
 
         if(currentPhotoPath != null){
-            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+            val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
         }
         //push
@@ -84,26 +75,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun editProfile(){
         val i = Intent(this,EditProfileActivity::class.java)
-        var img: ImageView = findViewById(R.id.imageView)
-        var tv1: TextView = findViewById(R.id.fullname)
-        var tv2: TextView = findViewById(R.id.nickname)
-        var tv3: TextView = findViewById(R.id.email)
-        var tv4: TextView = findViewById(R.id.location)
-        var tv5: TextView = findViewById(R.id.skill1)
-        var tv6: TextView = findViewById(R.id.skill2)
-        var tv7: TextView = findViewById(R.id.description1)
-        var tv8: TextView = findViewById(R.id.description2)
+        val tv1: TextView = findViewById(R.id.fullname)
+        val tv2: TextView = findViewById(R.id.nickname)
+        val tv3: TextView = findViewById(R.id.email)
+        val tv4: TextView = findViewById(R.id.location)
+        val tv5: TextView = findViewById(R.id.skill1)
+        val tv6: TextView = findViewById(R.id.skill2)
+        val tv7: TextView = findViewById(R.id.description1)
+        val tv8: TextView = findViewById(R.id.description2)
 
-        if(currentPhotoPath != null){
-            var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
-            img.setImageBitmap(bitmap)
-            i.putExtra("path", currentPhotoPath)
-        } else {
-            var b: Bitmap = Bitmap.createBitmap(img.drawToBitmap())
-            var bt = ByteArrayOutputStream()
-            b.compress(Bitmap.CompressFormat.PNG,100,bt)
-            i.putExtra("image",bt.toByteArray())
-        }
+        i.putExtra("path", currentPhotoPath)
 
         i.putExtra("Name",tv1.text)
         i.putExtra("Nickname",tv2.text)
@@ -117,25 +98,25 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        var img: ImageView = findViewById(R.id.imageView)
-        var tv1: TextView = findViewById(R.id.fullname)
-        var tv2: TextView = findViewById(R.id.nickname)
-        var tv3: TextView = findViewById(R.id.email)
-        var tv4: TextView = findViewById(R.id.location)
-        var tv5: TextView = findViewById(R.id.skill1)
-        var tv6: TextView = findViewById(R.id.skill2)
-        var tv7: TextView = findViewById(R.id.description1)
-        var tv8: TextView = findViewById(R.id.description2)
+        val img: ImageView = findViewById(R.id.imageView)
+        val tv1: TextView = findViewById(R.id.fullname)
+        val tv2: TextView = findViewById(R.id.nickname)
+        val tv3: TextView = findViewById(R.id.email)
+        val tv4: TextView = findViewById(R.id.location)
+        val tv5: TextView = findViewById(R.id.skill1)
+        val tv6: TextView = findViewById(R.id.skill2)
+        val tv7: TextView = findViewById(R.id.description1)
+        val tv8: TextView = findViewById(R.id.description2)
 
         if (data != null) {
-            var str1: String? = data.getStringExtra("Name")
-            var str2: String? = data.getStringExtra("Nickname")
-            var str3: String? = data.getStringExtra("email")
-            var str4: String? = data.getStringExtra("location")
-            var str5: String? = data.getStringExtra("skill1")
-            var str6: String? = data.getStringExtra("skill2")
-            var str7: String? = data.getStringExtra("description1")
-            var str8: String? = data.getStringExtra("description2")
+            val str1: String? = data.getStringExtra("Name")
+            val str2: String? = data.getStringExtra("Nickname")
+            val str3: String? = data.getStringExtra("email")
+            val str4: String? = data.getStringExtra("location")
+            val str5: String? = data.getStringExtra("skill1")
+            val str6: String? = data.getStringExtra("skill2")
+            val str7: String? = data.getStringExtra("description1")
+            val str8: String? = data.getStringExtra("description2")
 
 
             val profileInfo = "{'full name' : '$str1', nickname : '$str2', " +
@@ -151,7 +132,6 @@ class MainActivity : AppCompatActivity() {
             }
 
             currentPhotoPath = data.getStringExtra("path")
-
             if(currentPhotoPath != null) {
                 var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
                 img.setImageBitmap(bitmap)
