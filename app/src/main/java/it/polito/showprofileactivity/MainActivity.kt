@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity() {
             tv6.text = (json.get("skill2").toString())
             tv7.text = (json.get("description1").toString())
             tv8.text = (json.get("description2").toString())
-            println(json)
+
             try {
                 if(json.get("path").toString() == "null")
                     currentPhotoPath = null
@@ -97,7 +97,6 @@ class MainActivity : AppCompatActivity() {
         val tv8: TextView = findViewById(R.id.description2)
 
         i.putExtra("path", currentPhotoPath)
-
         i.putExtra("Name",tv1.text)
         i.putExtra("Nickname",tv2.text)
         i.putExtra("email",tv3.text)
