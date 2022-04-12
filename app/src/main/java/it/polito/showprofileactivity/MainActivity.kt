@@ -10,6 +10,7 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import org.json.JSONException
 import org.json.JSONObject
 
 private var currentPhotoPath: String? = null
@@ -28,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
                 " skill2 : '${getString(R.string.skill2)}', description1 : '${getString(R.string.description1)}', " +
-                "description2 : '${getString(R.string.description2)}', " + "path: '${currentPhotoPath}'}"
+                "description2 : '${getString(R.string.description2)}', " + "path: '${currentPhotoPath.toString()}'}"
 
         val json = sharedPrefR.getString("profile", profileInfo)?.let { JSONObject(it) }
 
@@ -50,10 +51,15 @@ class MainActivity : AppCompatActivity() {
             tv6.text = (json.get("skill2").toString())
             tv7.text = (json.get("description1").toString())
             tv8.text = (json.get("description2").toString())
-            if(json.get("path").toString() == "null")
-                currentPhotoPath = null
-            else
-                currentPhotoPath = json.get("path").toString()
+            println(json)
+            try {
+                if(json.get("path").toString() == "null")
+                    currentPhotoPath = null
+                else
+                    currentPhotoPath = json.get("path").toString()
+            } catch (e : JSONException) {
+                println(e)
+            }
         }
         if(currentPhotoPath != null){
             val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
