@@ -11,8 +11,10 @@
         android:id="@+id/imageView"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_margin="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:background="#EAEAEA"
         android:contentDescription="@string/todo"
         android:padding="16dp"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
@@ -42,6 +44,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:hint="@string/name_and_surname"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/name"
@@ -58,6 +61,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:hint="@string/nickname"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/nickname1"
@@ -71,6 +75,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:minHeight="48dp"
             android:text="@string/email"
@@ -84,13 +89,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/location"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/location"
             app:layout_constraintBottom_toTopOf="@+id/divider5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_email" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_email"
+            android:autofillHints="" />
 
         <View
             android:id="@+id/divider5"
@@ -105,7 +112,7 @@
             android:id="@+id/textView18"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Your skills: "
+            android:text="@string/your_skills"
             android:textAlignment="viewStart"
             android:textAppearance="@style/TextAppearance.AppCompat.Body2"
             android:textSize="20sp"
@@ -118,6 +125,7 @@
             android:layout_height="wrap_content"
             android:autofillHints=""
             android:ems="10"
+            android:hint="@string/skill"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/skill1"
@@ -143,13 +151,15 @@
             android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:ems="10"
+            android:hint="@string/skill"
             android:inputType="textPersonName"
             android:minHeight="48dp"
             android:text="@string/skill2"
             app:layout_constraintBaseline_toBaselineOf="@id/edit_description2"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/edit_skill1" />
+            app:layout_constraintTop_toBottomOf="@+id/edit_skill1"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/edit_description2"
@@ -157,6 +167,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="@string/description"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:text="@string/description2"
@@ -165,7 +176,8 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/edit_skill2"
             app:layout_constraintTop_toBottomOf="@+id/edit_description1"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:autofillHints="" />
 
         <EditText
             android:id="@+id/edit_description1"
@@ -173,6 +185,7 @@
             android:layout_height="wrap_content"
             android:ems="10"
             android:gravity="start|top"
+            android:hint="@string/description"
             android:inputType="textMultiLine"
             android:minHeight="48dp"
             android:text="@string/description1"
@@ -180,15 +193,18 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/edit_skill1"
             app:layout_constraintTop_toBottomOf="@+id/textView18"
-            app:layout_constraintVertical_chainStyle="spread" />
+            app:layout_constraintVertical_chainStyle="spread"
+            android:autofillHints="" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
         android:id="@+id/imageButton2"
+        style="@style/Widget.AppCompat.ImageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:contentDescription="imageButton2"
+        android:backgroundTint="#505050"
+        android:contentDescription="@string/imagebutton2"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="@+id/imageView"
         app:layout_constraintHorizontal_bias="0.795"

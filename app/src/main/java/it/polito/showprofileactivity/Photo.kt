@@ -13,15 +13,15 @@ class Photo {
     //Save Image
     fun saveToInternalStorage(bitmapImage : Bitmap, cw : ContextWrapper, dir : String, imageName : String ): String {
 
-        // path to /data/data/yourapp/app_data/imageDir
+        // path to /data/data/yourApp/app_data/imageDir
         val directory : File = cw.getDir(dir, Context.MODE_PRIVATE)
 
         // Create imageDir
-        val mypath : File = File(directory, imageName)
+        val myPath = File(directory, imageName)
         var fos : FileOutputStream? = null
 
         try {
-            fos = FileOutputStream(mypath)
+            fos = FileOutputStream(myPath)
 
             // Use the compress method on the BitMap object to write image to the OutputStream
             bitmapImage.compress(Bitmap.CompressFormat.PNG, 100, fos)
@@ -47,7 +47,7 @@ class Photo {
         }
 
         //Return the path
-        return directory.getAbsolutePath()
+        return directory.absolutePath
     }
 
     //Retrieve Image
@@ -55,16 +55,16 @@ class Photo {
         //Try to get the file from the bitmap
         try {
             //Get the file and load the bitmap
-            val f = File(path, imageName);
+            val f = File(path, imageName)
             val b = BitmapFactory.decodeStream(FileInputStream(f))
             // With create scaled bitmap we create a bitmap with correct measures
-            return Bitmap.createScaledBitmap(b, b.width*5, b.height*5, false);
+            return Bitmap.createScaledBitmap(b, b.width*5, b.height*5, false)
         }
         catch (e: FileNotFoundException) {
             //e.printStackTrace()
             Log.i("error", "file not found!")
         }
-        return null;
+        return null
     }
 
 }

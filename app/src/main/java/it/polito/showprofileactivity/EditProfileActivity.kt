@@ -5,7 +5,6 @@ import android.app.Activity
 import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,9 +21,10 @@ private const val REQUEST_ACTION_PICK = 2
 private const val name = "icon"
 private var currentPhotoPath: String? = null
 
+@Suppress("DEPRECATION")
 class EditProfileActivity : AppCompatActivity() {
 
-    var photo: Photo = Photo()
+    private var photo: Photo = Photo()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -79,7 +79,7 @@ class EditProfileActivity : AppCompatActivity() {
                     R.id.menu_open_gallery -> {
                         val galleryIntent = Intent(Intent.ACTION_PICK)
                         galleryIntent.type = "image/*"
-                        startActivityForResult(galleryIntent, REQUEST_ACTION_PICK);
+                        startActivityForResult(galleryIntent, REQUEST_ACTION_PICK)
                         true
                     }
                     else -> false
@@ -92,6 +92,7 @@ class EditProfileActivity : AppCompatActivity() {
         }
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {

@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">ShowProfileActivity</string>
     <string name="image_profile">image profile</string>
     <string name="full_name">full name</string>
@@ -21,9 +21,15 @@
     <string name="todo">TODO</string>
     <string name="nickname1">Nickname</string>
     <string name="skill2">Skill2</string>
-    <string name="description1">Description1</string>
+    <string name="description1" tools:ignore="Typos">Description1</string>
     <string name="description2">Description2</string>
     <string name="location">Location</string>
-    <string name="skill1">Skill1</string>
+    <string name="skill1" tools:ignore="Typos">Skill1</string>
     <string name="descrizione">descrizione</string>
+    <string name="error">error</string>
+    <string name="imagebutton2">imageButton2</string>
+    <string name="name_and_surname">Name and surname</string>
+    <string name="description">Description</string>
+    <string name="skill">Skill</string>
+    <string name="your_skills">Your skills:</string>
 </resources>

@@ -14,9 +14,10 @@ import org.json.JSONObject
 
 private var currentPhotoPath: String? = null
 
+@Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity() {
 
-    var photo: Photo = Photo()
+    private var photo: Photo = Photo()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,13 +26,13 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val sharedPrefR = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+        val sharedPrefR = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
                 " skill2 : '${getString(R.string.skill2)}', description1 : '${getString(R.string.description1)}', " +
                 "description2 : '${getString(R.string.description2)}', " + "path: '${currentPhotoPath}'}"
 
-        val json = JSONObject(sharedPrefR.getString("profile", profileInfo))
+        val json = sharedPrefR.getString("profile", profileInfo)?.let { JSONObject(it) }
 
         val tv1: TextView = findViewById(R.id.fullname)
         val tv2: TextView = findViewById(R.id.nickname)
@@ -42,15 +43,17 @@ class MainActivity : AppCompatActivity() {
         val tv7: TextView = findViewById(R.id.description1)
         val tv8: TextView = findViewById(R.id.description2)
 
-        tv1.text = json.get("full name").toString()
-        tv2.text = (json.get("nickname").toString())
-        tv3.text = (json.get("email").toString())
-        tv4.text = (json.get("location").toString())
-        tv5.text = (json.get("skill1").toString())
-        tv6.text = (json.get("skill2").toString())
-        tv7.text = (json.get("description1").toString())
-        tv8.text = (json.get("description2").toString())
-        currentPhotoPath = json.get("path").toString()
+        if(json != null){
+            tv1.text = json.get("full name").toString()
+            tv2.text = (json.get("nickname").toString())
+            tv3.text = (json.get("email").toString())
+            tv4.text = (json.get("location").toString())
+            tv5.text = (json.get("skill1").toString())
+            tv6.text = (json.get("skill2").toString())
+            tv7.text = (json.get("description1").toString())
+            tv8.text = (json.get("description2").toString())
+            currentPhotoPath = json.get("path").toString()
+        }
 
         if(currentPhotoPath != null){
             val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
@@ -100,6 +103,7 @@ class MainActivity : AppCompatActivity() {
         startActivityForResult(i,123)
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val img: ImageView = findViewById(R.id.imageView)
         val tv1: TextView = findViewById(R.id.fullname)
@@ -121,10 +125,9 @@ class MainActivity : AppCompatActivity() {
             val str7: String? = data.getStringExtra("description1")
             val str8: String? = data.getStringExtra("description2")
 
-
             currentPhotoPath = data.getStringExtra("path")
             if(currentPhotoPath != null) {
-                var bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+                val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
                 img.setImageBitmap(bitmap)
             }
 
@@ -134,7 +137,7 @@ class MainActivity : AppCompatActivity() {
                     "description2 : '$str8', " + "path: '${currentPhotoPath}'}"
             val json = JSONObject(profileInfo)
 
-            val sharedPref = this?.getPreferences(Context.MODE_PRIVATE) ?: return
+            val sharedPref = this.getPreferences(Context.MODE_PRIVATE) ?: return
             with (sharedPref.edit()) {
                 putString("profile", json.toString())
                 apply()
@@ -149,14 +152,14 @@ class MainActivity : AppCompatActivity() {
             tv7.text = str7
             tv8.text = str8
         } else {
-            tv1.text = "error"
-            tv2.text = "error"
-            tv3.text = "error"
-            tv4.text = "error"
-            tv5.text = "error"
-            tv6.text = "error"
-            tv7.text = "error"
-            tv8.text = "error"
+            tv1.text = getString(R.string.error)
+            tv2.text = getString(R.string.error)
+            tv3.text = getString(R.string.error)
+            tv4.text = getString(R.string.error)
+            tv5.text = getString(R.string.error)
+            tv6.text = getString(R.string.error)
+            tv7.text = getString(R.string.error)
+            tv8.text = getString(R.string.error)
         }
         super.onActivityResult(requestCode, resultCode, data)
 
