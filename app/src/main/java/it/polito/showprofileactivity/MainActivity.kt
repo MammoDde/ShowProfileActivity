@@ -24,8 +24,6 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val img: ImageView = findViewById(R.id.imageView)
 
-
-
         val sharedPrefR = this.getPreferences(Context.MODE_PRIVATE) ?: return
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
@@ -52,9 +50,11 @@ class MainActivity : AppCompatActivity() {
             tv6.text = (json.get("skill2").toString())
             tv7.text = (json.get("description1").toString())
             tv8.text = (json.get("description2").toString())
-            currentPhotoPath = json.get("path").toString()
+            if(json.get("path").toString() == "null")
+                currentPhotoPath = null
+            else
+                currentPhotoPath = json.get("path").toString()
         }
-
         if(currentPhotoPath != null){
             val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
