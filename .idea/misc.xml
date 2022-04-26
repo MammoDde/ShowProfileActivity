@@ -16,15 +16,25 @@
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/drawable/ic_launcher_background.xml" value="0.203" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/activity_edit_profile.xml" value="0.1" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/activity_main.xml" value="0.18" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/fragment_edit.xml" value="0.10900264783759929" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout-land/fragment_home.xml" value="0.10900264783759929" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_edit_check.xml" value="0.12227447627191107" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_edit_profile.xml" value="0.1" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_editcheck.xml" value="0.1675929884566054" />
-        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_main.xml" value="0.15" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_main.xml" value="0.18" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/activity_show_profile.xml" value="0.14749893116716545" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/app_bar_main.xml" value="0.1" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/content_main.xml" value="0.10560068405301411" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/edit.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/fragment_check.xml" value="0.1" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/fragment_edit.xml" value="0.10560068405301411" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/layout/fragment_home.xml" value="0.10560068405301411" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/left_menu.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/main.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/menu.xml" value="0.33" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/menu_photo.xml" value="0.1675929884566054" />
+        <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/navdrawer_menu.xml" value="0.10560068405301411" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/menu/photo_menu.xml" value="0.1675929884566054" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.197" />
         <entry key="..\:/Users/PC/StudioProjects/ShowProfileActivity/app/src/main/res/xml/file_paths.xml" value="0.12099187687045745" />

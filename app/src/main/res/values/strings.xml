@@ -35,4 +35,5 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="string_gallery" />
+    <string name="home">Home</string>
 </resources>

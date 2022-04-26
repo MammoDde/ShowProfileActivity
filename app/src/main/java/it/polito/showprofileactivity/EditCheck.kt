@@ -2,10 +2,7 @@ package it.polito.showprofileactivity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 
-class EditCheck : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_check)
-    }
+class EditCheck : Fragment(R.layout.fragment_check) {
 }

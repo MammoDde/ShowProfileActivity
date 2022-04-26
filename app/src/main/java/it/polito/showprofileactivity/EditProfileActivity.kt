@@ -28,7 +28,7 @@ class EditProfileActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_profile)
+        setContentView(R.layout.fragment_edit)
         val editButton: ImageButton = findViewById(R.id.imageButton2)
         val img: ImageView = findViewById(R.id.imageView)
         val name: String? = intent.getStringExtra("Name")
