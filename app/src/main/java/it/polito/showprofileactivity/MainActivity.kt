@@ -10,6 +10,13 @@ import android.view.MenuItem
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
+import com.google.android.material.navigation.NavigationView
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -20,9 +27,20 @@ class MainActivity : AppCompatActivity() {
 
     private var photo: Photo = Photo()
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+/*
+        val navController = findNavController(R.id.navdrawer_layout)
+        val navView = findViewById<NavigationView>(R.id.navView)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        //connect the navigation drawer with the navigation controller
+        NavigationUI.setupWithNavController(navView, navController)
+        //Set up the drawer button in the app bar
+        NavigationUI.setupActionBarWithNavController(this, navController, drawerLayout)
+
+*/
         val img: ImageView = findViewById(R.id.imageView)
 
         val sharedPrefR = this.getPreferences(Context.MODE_PRIVATE) ?: return
@@ -66,7 +84,15 @@ class MainActivity : AppCompatActivity() {
             img.setImageBitmap(bitmap)
         }
 
+
     }
+
+  /*  override fun onSupportNavigateUp(): Boolean {
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawerLayout)
+        val navController = this.findNavController(R.id.navdrawer_layout)
+        return NavigationUI.navigateUp(navController, drawerLayout)
+    }*/
+
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         val inflater: MenuInflater = menuInflater

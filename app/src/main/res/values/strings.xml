@@ -32,4 +32,7 @@
     <string name="description">Description</string>
     <string name="skill">Skill</string>
     <string name="your_skills">Your skills:</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="string_gallery" />
 </resources>
