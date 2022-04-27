@@ -7,14 +7,24 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="it.polito.showprofileactivity.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="Home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_home_to_nav_check"
+            app:destination="@id/nav_check" />
+        <action
+            android:id="@+id/action_nav_home_to_editProfileActivity"
+            app:destination="@id/nav_edit_profile" />
+        <action
+            android:id="@+id/action_nav_home_to_editProfileFragment"
+            app:destination="@id/nav_edit_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_check"
         android:name="it.polito.showprofileactivity.EditCheck"
-        android:label="EditCheck" >
-        <action
-            android:id="@+id/action_homeFragment_to_editCheck"
-            app:destination="@id/nav_home" />
-    </fragment>
+        android:label="Fragment check" />
+    <fragment
+        android:id="@+id/nav_edit_profile"
+        android:name="it.polito.showprofileactivity.EditProfileFragment"
+        android:label="Edit Profile" />
 </navigation>
