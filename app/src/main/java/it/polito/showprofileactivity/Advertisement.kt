@@ -1,12 +1,20 @@
 package it.polito.listapplication
+
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.showprofileactivity.R
+import it.polito.showprofileactivity.TimeSlotDetailsFragment
+import javax.xml.datatype.DatatypeFactory.newInstance
+
 
 data class Advertisement(val id: Int, val title:String, val description:String, val dateAndTime: String, val duration: String, val location: String )
 
@@ -14,14 +22,22 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
     var filter: Boolean = false
     var displayData = data.toMutableList()
 
+
     class AdvertisementViewHolder(v:View): RecyclerView.ViewHolder(v) {
         private val title: TextView = v.findViewById(R.id.slot_title)
         private val delete: ImageView = v.findViewById(R.id.delete)
 
+
+
         fun bind(advertisement: Advertisement, action: (v:View)->Unit) {
             title.text = advertisement.title
+            title.setOnClickListener{
+                //cliccando sul titolo bisogna spostarsi sul timeslotdetailsfragment?
+            }
             delete.setOnClickListener(action)
         }
+
+
         fun unbind() {
             delete.setOnClickListener(null)
         }
@@ -29,7 +45,9 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
         val vg = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.fragment_slot_details,parent, false)
+            .inflate(R.layout.fragment_adv,parent, false)
+
+
         return AdvertisementViewHolder(vg)
     }
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {

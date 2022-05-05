@@ -13,6 +13,7 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
@@ -33,17 +34,19 @@ class AdvListFragment : Fragment(R.layout.fragment_advlist) {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_advlist, container, false)
 
+//        setContentView(R.layout.fragment_advlist)
         val rv = root.findViewById<RecyclerView>(R.id.rv)
-        rv.layoutManager = LinearLayoutManager(this)
-        val adapter = AdvertisementAdapter(createAdvs(2000))
+        rv.layoutManager = LinearLayoutManager(root.context)
+        val adapter = AdvertisementAdapter(createAdvs(20))
         rv.adapter = adapter
+
         return root
     }
 
     private fun createAdvs(n: Int): MutableList<Advertisement> {
         val l = mutableListOf<Advertisement>()
         for (i in 1..n) {
-            val i = Advertisement(i,"name$i", "role$i")
+            val i = Advertisement(i,"title$i", "description$i", "data&time$i","duration$i","location$i")
             l.add(i)
         }
         return l
