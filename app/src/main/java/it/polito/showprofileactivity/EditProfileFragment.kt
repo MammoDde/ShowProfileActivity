@@ -1,5 +1,6 @@
 package it.polito.showprofileactivity
 
+import android.app.FragmentManager
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.graphics.Bitmap
@@ -8,10 +9,13 @@ import android.preference.PreferenceManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -80,62 +84,28 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
             img.setImageBitmap(bitmap)
         }
 
-        val callback = object : OnBackPressedCallback(true){
-            override fun handleOnBackPressed() {
-                val tv = view?.findViewById<TextView>(R.id.edit_fullname)
+        val saveButton = root.findViewById<Button>(R.id.save_button)
 
-                val profileInfo = "{'full name' : '${tv?.text}', nickname : '${tv?.text}', " +
-                        "email : '${tv?.text}', location : '${tv?.text}', skill1 : '${tv?.text}'," +
-                        " skill2 : '${tv?.text}', description1 : '${tv?.text}', " +
-                        "description2 : '${tv?.text}', " + "path: '${currentPhotoPath}'}"
-                val json = JSONObject(profileInfo)
+        saveButton.setOnClickListener{
+            val tv = view?.findViewById<TextView>(R.id.edit_fullname)
 
-                val sharedPref = activity?.getPreferences(MODE_PRIVATE) ?: return
+            val profileInfo = "{'full name' : '${tv?.text}', nickname : '${tv?.text}', " +
+                    "email : '${tv?.text}', location : '${tv?.text}', skill1 : '${tv?.text}'," +
+                    " skill2 : '${tv?.text}', description1 : '${tv?.text}', " +
+                    "description2 : '${tv?.text}', " + "path: '${currentPhotoPath}'}"
+            val json = JSONObject(profileInfo)
+
+            val sharedPref = activity?.getPreferences(MODE_PRIVATE)
+            if (sharedPref != null) {
                 with (sharedPref.edit()) {
                     putString("profile", json.toString())
                     apply()
                 }
             }
         }
-        requireActivity().onBackPressedDispatcher.addCallback(callback)
+
         return root
     }
-/*
-    override fun onPause() {
-        super.onPause()
-        val tv = view?.findViewById<TextView>(R.id.edit_fullname)
-
-        val profileInfo = "{'full name' : '${tv?.text}', nickname : '${tv?.text}', " +
-                "email : '${tv?.text}', location : '${tv?.text}', skill1 : '${tv?.text}'," +
-                " skill2 : '${tv?.text}', description1 : '${tv?.text}', " +
-                "description2 : '${tv?.text}', " + "path: '${currentPhotoPath}'}"
-        val json = JSONObject(profileInfo)
-
-        val sharedPref = this.activity?.getPreferences(MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-            putString("profile", json.toString())
-            apply()
-        }
-
-    }
 
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        val tv = view?.findViewById<TextView>(R.id.edit_fullname)
-
-        val profileInfo = "{'full name' : '${tv?.text}', nickname : '${tv?.text}', " +
-                "email : '${tv?.text}', location : '${tv?.text}', skill1 : '${tv?.text}'," +
-                " skill2 : '${tv?.text}', description1 : '${tv?.text}', " +
-                "description2 : '${tv?.text}', " + "path: '${currentPhotoPath}'}"
-        val json = JSONObject(profileInfo)
-
-        val sharedPref = this.activity?.getPreferences(MODE_PRIVATE) ?: return
-        with (sharedPref.edit()) {
-            putString("profile", json.toString())
-            apply()
-        }
-
-    }*/
 }

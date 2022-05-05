@@ -10,6 +10,9 @@
             android:id="@+id/nav_edit_profile"
             android:title="Edit profile" />
         <item
+            android:id="@+id/nav_adv_list"
+            android:title="My time slots" />
+        <item
             android:id="@+id/nav_check"
             android:title="@string/check" />
     </group>
