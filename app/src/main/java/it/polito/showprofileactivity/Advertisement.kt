@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.navigation.NavDeepLinkBuilder
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
@@ -23,22 +24,22 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
 
     class AdvertisementViewHolder(v:View): RecyclerView.ViewHolder(v) {
         private val title: TextView = v.findViewById(R.id.slot_title)
-        private val delete: ImageView = v.findViewById(R.id.delete)
+        private val edit: ImageView = v.findViewById(R.id.edit)
+        private val card: CardView = v.findViewById(R.id.card)
 
 
 
         fun bind(advertisement: Advertisement, action: (v:View)->Unit) {
             title.text = advertisement.title
-            title.setOnClickListener{
-                //cliccando sul titolo bisogna spostarsi sul timeslotdetailsfragment?
-                
+            card.setOnClickListener{
+                //cliccando sulla card si apre il TimeSlotDetailFragment
             }
-            delete.setOnClickListener(action)
+            edit.setOnClickListener(action)
         }
 
 
         fun unbind() {
-            delete.setOnClickListener(null)
+            edit.setOnClickListener(null)
         }
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
@@ -52,8 +53,9 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
     override fun onBindViewHolder(holder: AdvertisementViewHolder, position: Int) {
         val item = displayData[position]
         holder.bind(item) {
+            //cliccando sull'edit si apre il TimeSlotEditFragment
 
-            val pos = data.indexOf(item)
+        /*val pos = data.indexOf(item)
             if (pos!=-1) {
                 data.removeAt(pos)
                 val pos1 = displayData.indexOf(item)
@@ -61,7 +63,7 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
                     displayData.removeAt(pos1)
                     notifyItemRemoved(pos1)
                 }
-            }
+            }*/
         }
     }
 
