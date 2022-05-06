@@ -11,11 +11,30 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.Index
+import androidx.room.PrimaryKey
 import it.polito.showprofileactivity.R
 import it.polito.showprofileactivity.TimeSlotDetailsFragment
 
+//(val id: Int, val title:String, val description:String, val dateAndTime: String, val duration: String, val location: String)
 
-data class Advertisement(val id: Int, val title:String, val description:String, val dateAndTime: String, val duration: String, val location: String )
+@Entity(tableName = "advertisement", indices = [Index("id")])
+data class Advertisement(
+    @PrimaryKey(autoGenerate = true)
+    var id:Int,
+    @ColumnInfo(name="title")
+    val title:String,
+    @ColumnInfo(name="description")
+    val description:String,
+    @ColumnInfo(name="dateAndTime")
+    val dateAndTime: String,
+    @ColumnInfo(name="duration")
+    val duration: String,
+    @ColumnInfo(name="location")
+    val location: String
+)
 
 class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Adapter<AdvertisementAdapter.AdvertisementViewHolder>() {
     var filter: Boolean = false
