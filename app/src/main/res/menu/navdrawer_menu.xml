@@ -15,5 +15,8 @@
         <item
             android:id="@+id/nav_check"
             android:title="@string/check" />
+        <item
+            android:id="@+id/nav_slot_details"
+            android:title="Time Slot Details" />
     </group>
 </menu>

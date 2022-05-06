@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil.setContentView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -19,8 +20,6 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_time_slot_list, container, false)
-
-//        setContentView(R.layout.fragment_advlist)
         val rv = root.findViewById<RecyclerView>(R.id.rv)
         rv.layoutManager = LinearLayoutManager(root.context)
         val adapter = AdvertisementAdapter(createAdvs(20))

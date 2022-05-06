@@ -1,15 +1,10 @@
 package it.polito.showprofileactivity
 
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
@@ -23,9 +18,28 @@ class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(time_slot_menu: Menu, inflater: MenuInflater) {
+        //menu item that allows editing the advertisement
+
+            val inflater: MenuInflater = MenuInflater(context)
+            inflater.inflate(R.menu.time_slot_menu, time_slot_menu)
+
+        super.onCreateOptionsMenu(time_slot_menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.icona -> {
+                //aprire TimeSlotEditFragment
+                findNavController().navigate(R.id.action_nav_slot_details_to_timeSlotEditFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
         }
     }
 

@@ -5,9 +5,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.fragment.NavHostFragment.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.showprofileactivity.R
+import it.polito.showprofileactivity.TimeSlotDetailsFragment
 
 
 data class Advertisement(val id: Int, val title:String, val description:String, val dateAndTime: String, val duration: String, val location: String )
@@ -27,6 +31,7 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
             title.text = advertisement.title
             title.setOnClickListener{
                 //cliccando sul titolo bisogna spostarsi sul timeslotdetailsfragment?
+                
             }
             delete.setOnClickListener(action)
         }
