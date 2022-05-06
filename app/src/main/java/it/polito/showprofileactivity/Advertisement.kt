@@ -1,19 +1,13 @@
 package it.polito.listapplication
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import it.polito.showprofileactivity.R
-import it.polito.showprofileactivity.TimeSlotDetailsFragment
-import javax.xml.datatype.DatatypeFactory.newInstance
 
 
 data class Advertisement(val id: Int, val title:String, val description:String, val dateAndTime: String, val duration: String, val location: String )
@@ -45,7 +39,7 @@ class AdvertisementAdapter(val data:MutableList<Advertisement>): RecyclerView.Ad
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AdvertisementViewHolder {
         val vg = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.fragment_adv,parent, false)
+            .inflate(R.layout.time_slot,parent, false)
 
 
         return AdvertisementViewHolder(vg)

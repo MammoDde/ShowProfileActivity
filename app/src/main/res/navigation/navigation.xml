@@ -32,6 +32,6 @@
         android:label="Edit Profile" />
     <fragment
         android:id="@+id/nav_adv_list"
-        android:name="it.polito.showprofileactivity.AdvListFragment"
+        android:name="it.polito.showprofileactivity.`TimeSlotListFragment.kt`"
         android:label="My time slots" />
 </navigation>
