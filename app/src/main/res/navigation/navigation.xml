@@ -41,12 +41,6 @@
         android:id="@+id/nav_slot_details"
         android:name="it.polito.showprofileactivity.TimeSlotDetailsFragment"
         android:label="TimeSlotDetailsFragment" >
-        <action
-            android:id="@+id/action_nav_slot_details_to_timeSlotEditFragment"
-            app:destination="@id/nav_edit_time_slot" />
     </fragment>
-    <fragment
-        android:id="@+id/nav_edit_time_slot"
-        android:name="it.polito.showprofileactivity.TimeSlotEditFragment"
-        android:label="TimeSlotEditFragment" />
+
 </navigation>

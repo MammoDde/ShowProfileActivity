@@ -36,7 +36,7 @@ class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
         return when (item.itemId) {
             R.id.icona -> {
                 //aprire TimeSlotEditFragment
-                findNavController().navigate(R.id.action_nav_slot_details_to_timeSlotEditFragment)
+                //findNavController().navigate(R.id.action_nav_slot_details_to_timeSlotEditFragment)
                 true
             }
             else -> super.onOptionsItemSelected(item)

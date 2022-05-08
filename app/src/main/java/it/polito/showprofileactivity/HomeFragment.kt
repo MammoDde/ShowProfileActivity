@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -22,6 +23,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val root = inflater.inflate(R.layout.fragment_home, container, false)
+
+
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
@@ -29,7 +33,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 "description2 : '${getString(R.string.description2)}', " + "path: '${currentPhotoPath.toString()}'}"
 
         val json = sharedPrefR?.getString("profile", profileInfo)?.let { JSONObject(it) }
-        val root = inflater.inflate(R.layout.fragment_home, container, false)
         val img: ImageView = root.findViewById(R.id.imageView)
 
         val tv1: TextView = root.findViewById(R.id.fullname)
@@ -68,4 +71,5 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return root
 
     }
+
 }

@@ -4,16 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil.setContentView
+import androidx.activity.viewModels
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.DataBindingUtil.*
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import it.polito.listapplication.Advertisement
-import it.polito.listapplication.AdvertisementAdapter
 
 
 class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
+
+    val vm by viewModels<TimeSlotVM>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -24,27 +29,59 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         val rv = root.findViewById<RecyclerView>(R.id.rv)
         rv.layoutManager = LinearLayoutManager(root.context)
 
+        val l = mutableListOf<TimeSlot>()
 
-        val l = mutableListOf<Advertisement>()
-
-        //defining VievModel
-        val vm by viewModels<AdvertisementsVM>()
-        vm.items.observe(this){
+        //defining ViewModel
+        vm.value.observe(viewLifecycleOwner) {
             //qui i dati da caricare
             println(it)
-            for (i in 1..it.size) {
-                val i = Advertisement(it[i].id, it[i].title, it[i].description, it[i].dateAndTime, it[i].duration, it[i].location)
-                l.add(i)
-            }
         }
 
         //qua andiamo a caricare i dati nell'interfaccia
-        val adapter = AdvertisementAdapter(l)
+        val adapter = TimeSlotAdapter(l)
         rv.adapter = adapter
-
 
         return root
     }
 
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
+        super.onViewCreated(view, savedInstanceState)
+
+       // val vm = activity?.let { ViewModelProvider(it).get(AdvertisementsVM::class.java) }
+
+/*
+        val rv = view.findViewById<RecyclerView>(R.id.rv)
+        if (rv != null) {
+            rv.layoutManager = LinearLayoutManager(requireView().context)
+        }
+        val l = mutableListOf<Advertisement>()
+
+        //defining ViewModel
+        vm.items.observe(viewLifecycleOwner) {
+            //qui i dati da caricare
+            println("Inside viewmodel")
+
+            for(i in 1..it.size) {
+                val i = Advertisement(it[i].id, it[i].title, it[i].description, it[i].dateAndTime, it[i].duration, it[i].location)
+                l.add(i)
+            }
+
+        }
+        //qua andiamo a caricare i dati nell'interfaccia
+        val adapter = AdvertisementAdapter(l)
+        if (rv != null) {
+            rv.adapter = adapter
+        }*/
+    }
+
+
+
+    override fun onStart() {
+        super.onStart()
+
+
+
+    }
 }
