@@ -30,7 +30,17 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         rv.layoutManager = LinearLayoutManager(root.context)
 
         val l = mutableListOf<TimeSlot>()
+        //creo elemento prova da passare alla mutableList
+        val prova = TimeSlot()
 
+        prova.id = 1
+        prova.title = "titolo"
+        prova.description = "descrizione"
+        prova.dateAndTime = "13/05/2022, 10:30"
+        prova.location = "Torino"
+        prova.duration = "2h"
+
+        l.add(prova)
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
             //qui i dati da caricare

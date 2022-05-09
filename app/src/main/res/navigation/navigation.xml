@@ -21,9 +21,6 @@
         <action
             android:id="@+id/action_nav_home_to_advListFragment"
             app:destination="@id/nav_adv_list" />
-        <action
-            android:id="@+id/action_nav_home_to_timeSlotDetailsFragment"
-            app:destination="@id/nav_slot_details" />
     </fragment>
     <fragment
         android:id="@+id/nav_check"
@@ -36,11 +33,22 @@
     <fragment
         android:id="@+id/nav_adv_list"
         android:name="it.polito.showprofileactivity.TimeSlotListFragment"
-        android:label="My time slots" />
+        android:label="My time slots" >
+        <action
+            android:id="@+id/action_nav_adv_list_to_nav_slot_details"
+            app:destination="@id/nav_slot_details" />
+        <action
+            android:id="@+id/action_nav_adv_list_to_timeSlotEditFragment"
+            app:destination="@id/timeSlotEditFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_slot_details"
         android:name="it.polito.showprofileactivity.TimeSlotDetailsFragment"
         android:label="TimeSlotDetailsFragment" >
     </fragment>
+    <fragment
+        android:id="@+id/timeSlotEditFragment"
+        android:name="it.polito.showprofileactivity.TimeSlotEditFragment"
+        android:label="TimeSlotEditFragment" />
 
 </navigation>

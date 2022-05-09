@@ -1,24 +1,37 @@
 package it.polito.showprofileactivity
 
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "items", indices = [Index("name")])
+@Entity(tableName = "items", indices = [Index("title")])
 class TimeSlot {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
-    var name:String = ""
+    @ColumnInfo(name = "title")
+    var title:String = ""
+    @ColumnInfo(name = "description")
+    var description:String =""
+    @ColumnInfo(name = "dateAndTime")
+    var dateAndTime:String =""
+    @ColumnInfo(name = "duration")
+    var duration:String =""
+    @ColumnInfo(name = "location")
+    var location:String =""
 
-
-    override fun toString() = "{ id:$id, title:\"$name\"}"
+    override fun toString() = "{ id:$id, title:\"$title\", description:\"$description\", dateAndTime:\"$dateAndTime\", duration: \"$duration\", location:\"$location\"}"
 }
 
 
@@ -32,15 +45,16 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
 
 
         fun bind(timeslot: TimeSlot, action: (v: View)->Unit) {
-            title.text = timeslot.name
-            card.setOnClickListener{
-                //cliccando sulla card si apre il TimeSlotDetailFragment
+            title.text = timeslot.title
+            card.setOnClickListener(action)
+            edit.setOnClickListener {
+                it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment)
+
             }
-            edit.setOnClickListener(action)
         }
 
         fun unbind() {
-            edit.setOnClickListener(null)
+            card.setOnClickListener(null)
         }
     }
 
@@ -53,7 +67,11 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
     }
 
     override fun onBindViewHolder(holder: TimeSlotViewHolder, position: Int) {
-
+        val item = displayData[position]
+        holder.bind(item) {
+            //cliccando sull'edit si apre il TimeSlotDetailsFragment
+            it.findNavController().navigate(R.id.action_nav_adv_list_to_nav_slot_details)
+        }
     }
 
     override fun getItemCount(): Int {
