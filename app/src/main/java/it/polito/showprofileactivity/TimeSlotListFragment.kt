@@ -80,8 +80,9 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
             //il nuovo elemento deve essere creato dall'utente quindi bisogna creare una pagina
             //in cui l'utente può creare il time slot
 
-            //val bundle = Bundle()
-            //it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
+            val bundle = Bundle()
+            //Log.d("bundle",bundle.toString())
+            it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
             l.add(prova2)
             //adapter.notifyDataSetChanged()
             for(adv in l) {
