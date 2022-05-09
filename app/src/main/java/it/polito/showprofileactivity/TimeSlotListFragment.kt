@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
@@ -23,6 +24,7 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
 
     val vm by viewModels<TimeSlotVM>()
 
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,7 +36,7 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         rv.layoutManager = LinearLayoutManager(root.context)
 
         val l = mutableListOf<TimeSlot>()
-        //creo elemento prova da passare alla mutableList
+
         val prova = TimeSlot()
         val prova1 = TimeSlot()
         val prova2 = TimeSlot()
@@ -63,12 +65,12 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
 
         //l.add(prova)
         //l.add(prova1)
-
+        val adapter = TimeSlotAdapter(l)
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
-
-            //qui i dati da caricare
-            for(i in 0..it.size-1) {
+            //qui i dati da caricar
+            //questo è testato ed è ok
+            /*for(i in 0..it.size-1) {
                 val t = TimeSlot()
                 t.id = it[i].id
                 t.title = it[i].title
@@ -77,13 +79,23 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
                 t.location = it[i].location
                 t.duration = it[i].duration
                 l.add(t)
+
+                Log.d("observer",l[i].toString())
                 //questo è testato ed è ok
-            }
+
+            }*/
+            //it?.let { rv.adapter?.notifyDataSetChanged() }
+            it.let { val adapter = TimeSlotAdapter(it as MutableList<TimeSlot>)
+            rv.adapter = adapter}
+
         }
 
         //qua andiamo a caricare i dati nell'interfaccia
-        val adapter = TimeSlotAdapter(l)
-        rv.adapter = adapter
+        val adapter1 = TimeSlotAdapter(l)
+
+        rv.adapter = adapter1
+
+
 
         fab.setOnClickListener{
             //aggiungere un nuovo elemento alla lista
@@ -93,7 +105,7 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
             val bundle = Bundle()
             //Log.d("bundle",bundle.toString())
             it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
-            l.add(prova2)
+            //l.add(prova2)
             //adapter.notifyDataSetChanged()
             for(adv in l) {
                 Log.d("lista",adv.title)

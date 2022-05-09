@@ -11,9 +11,11 @@ import android.widget.EditText
 import android.widget.TextView
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 
 class TimeSlotEditFragment : Fragment() {
 
+    val vm by viewModels<TimeSlotVM>()
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -45,7 +47,7 @@ class TimeSlotEditFragment : Fragment() {
                             view.findViewById<EditText>(R.id.slot_location_edit).text = view.findViewById<EditText>(R.id.slot_location_edit).text
 
                             val adv = TimeSlot()
-                            adv.id = 10
+
                             adv.title= view.findViewById<EditText>(R.id.slot_title_edit).text.toString()
                             adv.description= view.findViewById<EditText>(R.id.slot_description_edit).text.toString()
                             adv.dateAndTime= view.findViewById<EditText>(R.id.slot_date_and_time_edit).text.toString()
@@ -55,7 +57,7 @@ class TimeSlotEditFragment : Fragment() {
                             Log.d("new adv", adv.toString())
 
                             //TODO : nuovo adv passato correttamente, sarebbe da inserire nel db
-
+                            vm.add(adv)
                             // if you want onBackPressed() to be called as normal afterwards
                             if (isEnabled) {
                                 isEnabled = false

@@ -1,6 +1,7 @@
 package it.polito.showprofileactivity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity

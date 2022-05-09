@@ -80,7 +80,7 @@ class TimeSlotAdapter(val data: MutableList<TimeSlot>): RecyclerView.Adapter<Tim
     override fun onBindViewHolder(holder: TimeSlotViewHolder, position: Int) {
         val item = displayData[position]
 
-        notifyItemInserted(position)
+//        notifyItemInserted(position)
         holder.bind(item) {
             //cliccando sull'edit si apre il TimeSlotDetailsFragment
             //passaggio di informazioni tra fragment with a Bundle
@@ -97,6 +97,12 @@ class TimeSlotAdapter(val data: MutableList<TimeSlot>): RecyclerView.Adapter<Tim
 
     override fun getItemCount(): Int {
         return data.size
+    }
+
+    fun submitList(it: List<TimeSlot>?) {
+        if (it != null) {
+            for (i in 0..it.size-1){ Log.d("submitList", it[i].toString()) }
+        }
     }
 
 
