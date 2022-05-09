@@ -61,14 +61,24 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         prova2.location = "Torino2"
         prova2.duration = "2h2"
 
-        l.add(prova)
-        l.add(prova1)
-
+        //l.add(prova)
+        //l.add(prova1)
 
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
+
             //qui i dati da caricare
-            println(it)
+            for(i in 0..it.size-1) {
+                val t = TimeSlot()
+                t.id = it[i].id
+                t.title = it[i].title
+                t.description = it[i].description
+                t.dateAndTime = it[i].dateAndTime
+                t.location = it[i].location
+                t.duration = it[i].duration
+                l.add(t)
+                //questo è testato ed è ok
+            }
         }
 
         //qua andiamo a caricare i dati nell'interfaccia
@@ -89,6 +99,9 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
                 Log.d("lista",adv.title)
             }
         }
+
+        //qua andiamo a caricare i dati nell'interfaccia
+
 
         return root
     }

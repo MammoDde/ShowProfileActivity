@@ -37,8 +37,9 @@ class TimeSlot {
 }
 
 
-class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<TimeSlotAdapter.TimeSlotViewHolder>() {
+class TimeSlotAdapter(val data: MutableList<TimeSlot>): RecyclerView.Adapter<TimeSlotAdapter.TimeSlotViewHolder>() {
     var displayData = data.toMutableList()
+
 
     class TimeSlotViewHolder(v: View): RecyclerView.ViewHolder(v) {
         private val title: TextView = v.findViewById(R.id.slot_title)
@@ -60,7 +61,6 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
                 bundle.putString("location", timeslot.location)
                 it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
             }
-
         }
 
         fun unbind() {
@@ -69,18 +69,20 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TimeSlotViewHolder {
+
         val vg = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.time_slot,parent, false)
+            .inflate(R.layout.time_slot, parent, false)
 
         return TimeSlotViewHolder(vg)
     }
 
     override fun onBindViewHolder(holder: TimeSlotViewHolder, position: Int) {
         val item = displayData[position]
+
+        notifyItemInserted(position)
         holder.bind(item) {
             //cliccando sull'edit si apre il TimeSlotDetailsFragment
-
             //passaggio di informazioni tra fragment with a Bundle
             val bundle = Bundle()
             bundle.putString("title", item.title)
