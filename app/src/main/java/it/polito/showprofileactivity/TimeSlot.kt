@@ -1,6 +1,7 @@
 package it.polito.showprofileactivity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.Index
 import androidx.room.PrimaryKey
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @Entity(tableName = "items", indices = [Index("title")])
 class TimeSlot {
@@ -57,6 +59,7 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
                 bundle.putString("location", timeslot.location)
                 it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
             }
+
         }
 
         fun unbind() {
