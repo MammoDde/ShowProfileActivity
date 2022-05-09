@@ -55,34 +55,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
-/*private fun createItems(n: Int): MutableList<Item> {
-    val l = mutableListOf<Item>()
-    for (i in 1..n) {
-        val i = Item(i,"name$i", "role$i")
-        l.add(i)
-    }
-    return l
-}
-
-override fun onCreate(savedInsnceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContentView(R.layout.activitymain)
-    val rv = findViewById<RecyclerView>(R.id.)
-    rv.layoutManager = LinearLayoutManager(this)
-    val adapter = ItemAdapter(createItems(2000))
-    rv.adapter = adapter
-    val s = findViewById<Switch>(R.id.switch1)
-    s.setOnCheckedChangeListener { , b ->
-        adapter.addFilter(b)
-    }
-}*/
-
-    //menu con i tre puntini
-    /* override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        menuInflater.inflate(R.menu.navdrawer_menu, menu)
-        return true
-    }*/
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
 
@@ -102,13 +74,6 @@ override fun onCreate(savedInsnceState: Bundle?) {
             val string = "Funziona"
             bundle.putString("id", string)
             findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_nav_check, bundle)
-            supportActionBar?.title = "Check"
-        }
-        if(item.itemId == R.id.nav_slot_details){
-            val bundle = Bundle()
-            val string = "Funziona"
-            bundle.putString("id", string)
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.nav_slot_details, bundle)
             supportActionBar?.title = "Check"
         }
         drawerLayout.closeDrawer(GravityCompat.START)

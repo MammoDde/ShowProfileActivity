@@ -1,6 +1,7 @@
 package it.polito.showprofileactivity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -32,15 +33,25 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         val l = mutableListOf<TimeSlot>()
         //creo elemento prova da passare alla mutableList
         val prova = TimeSlot()
+        val prova1 = TimeSlot()
 
         prova.id = 1
         prova.title = "titolo"
         prova.description = "descrizione"
-        prova.dateAndTime = "13/05/2022, 10:30"
+        prova.dateAndTime = "Data personale"
         prova.location = "Torino"
         prova.duration = "2h"
 
+        prova1.id = 2
+        prova1.title = "titolo1"
+        prova1.description = "descrizione1"
+        prova1.dateAndTime = "Data personale1"
+        prova1.location = "Torino1"
+        prova1.duration = "2h1"
+
+
         l.add(prova)
+        l.add(prova1)
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
             //qui i dati da caricare

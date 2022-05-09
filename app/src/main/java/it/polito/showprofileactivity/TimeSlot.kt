@@ -48,8 +48,14 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
             title.text = timeslot.title
             card.setOnClickListener(action)
             edit.setOnClickListener {
-                it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment)
-
+                //Cliccando il tasto edit nella Lista
+                val bundle = Bundle()
+                bundle.putString("title", timeslot.title)
+                bundle.putString("description", timeslot.description)
+                bundle.putString("dateAndTime", timeslot.dateAndTime)
+                bundle.putString("duration", timeslot.duration)
+                bundle.putString("location", timeslot.location)
+                it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
             }
         }
 
@@ -70,7 +76,16 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
         val item = displayData[position]
         holder.bind(item) {
             //cliccando sull'edit si apre il TimeSlotDetailsFragment
-            it.findNavController().navigate(R.id.action_nav_adv_list_to_nav_slot_details)
+
+            //passaggio di informazioni tra fragment with a Bundle
+            val bundle = Bundle()
+            bundle.putString("title", item.title)
+            bundle.putString("description", item.description)
+            bundle.putString("dateAndTime", item.dateAndTime)
+            bundle.putString("duration", item.duration)
+            bundle.putString("location", item.location)
+
+            it.findNavController().navigate(R.id.action_nav_adv_list_to_nav_slot_details, bundle)
         }
     }
 

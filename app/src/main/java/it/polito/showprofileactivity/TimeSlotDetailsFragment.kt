@@ -2,6 +2,8 @@ package it.polito.showprofileactivity
 
 import android.os.Bundle
 import android.view.*
+import android.widget.TextView
+import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
@@ -25,18 +27,32 @@ class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
     override fun onCreateOptionsMenu(time_slot_menu: Menu, inflater: MenuInflater) {
         //menu item that allows editing the advertisement
 
-            val inflater: MenuInflater = MenuInflater(context)
-            inflater.inflate(R.menu.time_slot_menu, time_slot_menu)
+        val inflater = MenuInflater(context)
+        inflater.inflate(R.menu.time_slot_menu, time_slot_menu)
 
         super.onCreateOptionsMenu(time_slot_menu, inflater)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+
         // Handle item selection
         return when (item.itemId) {
             R.id.icona -> {
                 //aprire TimeSlotEditFragment.kt
-                //findNavController().navigate(R.id.action_nav_slot_details_to_timeSlotEditFragment)
+                val title = view?.findViewById<TextView>(R.id.slot_title)?.text.toString()
+                val description = view?.findViewById<TextView>(R.id.slot_description)?.text.toString()
+                val dateAndTime = view?.findViewById<TextView>(R.id.slot_date_and_time)?.text.toString()
+                val duration = view?.findViewById<TextView>(R.id.slot_duration)?.text.toString()
+                val location = view?.findViewById<TextView>(R.id.slot_location)?.text.toString()
+
+                var bundle = Bundle()
+                bundle.putString("title", title)
+                bundle.putString("description", description)
+                bundle.putString("dateAndTime", dateAndTime)
+                bundle.putString("duration", duration)
+                bundle.putString("location", location)
+                findNavController().navigate(R.id.action_nav_slot_details_to_timeSlotEditFragment, bundle)
                 true
             }
             else -> super.onOptionsItemSelected(item)
@@ -48,27 +64,26 @@ class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_time_slot_details, container, false)
+        val root = inflater.inflate(R.layout.fragment_time_slot_details, container, false)
         //questa view dovrà avere un menu che permette di modificarne i campi
+
+        //recupero dati dal Bundle
+        arguments.let {
+            if (it != null) {
+                println(it.getString("dateAndTime"))
+
+                root.findViewById<TextView>(R.id.slot_title).text = it.getString("title")
+                root.findViewById<TextView>(R.id.slot_description).text = it.getString("description")
+                root.findViewById<TextView>(R.id.slot_date_and_time).text = it.getString("dateAndTime")
+                root.findViewById<TextView>(R.id.slot_duration).text = it.getString("duration")
+                root.findViewById<TextView>(R.id.slot_location).text = it.getString("location")
+            }
+
+        }
+
+        return root
+
     }
 
-    /*companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment TimeSlotDetailsFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            TimeSlotDetailsFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }*/
+
 }

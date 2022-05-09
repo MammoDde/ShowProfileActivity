@@ -7,37 +7,37 @@
     android:layout_height="match_parent">
 
     <EditText
-        android:id="@+id/slot_title"
+        android:id="@+id/slot_title_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Time Slot Title"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        app:layout_constraintBottom_toTopOf="@+id/slot_description"
+        app:layout_constraintBottom_toTopOf="@+id/slot_description_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/slot_description"
+        android:id="@+id/slot_description_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="Description : descrizione"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        app:layout_constraintBottom_toTopOf="@id/slot_date_and_time"
+        app:layout_constraintBottom_toTopOf="@id/slot_date_and_time_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot_title" />
+        app:layout_constraintTop_toBottomOf="@+id/slot_title_edit" />
 
     <EditText
-        android:id="@+id/slot_date_and_time"
+        android:id="@+id/slot_date_and_time_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="05/05/2022"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slot_description" />
+        app:layout_constraintTop_toBottomOf="@id/slot_description_edit" />
 
     <DatePicker
 
@@ -46,17 +46,17 @@
         android:layout_height="wrap_content"
         android:calendarViewShown="false"
         android:datePickerMode="spinner"
-        app:layout_constraintBottom_toTopOf="@+id/slot_duration"
+        app:layout_constraintBottom_toTopOf="@+id/slot_duration_edit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/slot_date_and_time" />
+        app:layout_constraintTop_toBottomOf="@+id/slot_date_and_time_edit" />
 
     //https://www.geeksforgeeks.org/datepicker-in-kotlin/
 
 
     <EditText
-        android:id="@+id/slot_duration"
+        android:id="@+id/slot_duration_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
@@ -66,13 +66,13 @@
         app:layout_constraintTop_toBottomOf="@id/datePicker" />
 
     <EditText
-        android:id="@+id/slot_location"
+        android:id="@+id/slot_location_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
         android:text="Location: Torino"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/slot_duration" />
+        app:layout_constraintTop_toBottomOf="@id/slot_duration_edit" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

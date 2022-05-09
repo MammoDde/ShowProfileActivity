@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 
@@ -25,10 +26,12 @@ class TimeSlotEditFragment : Fragment() {
 
         //costrutto necessario per leggere dai dati passati dal bundle
         arguments?.let {
-            if (it.getSerializable("id") != null) {
-                val id = it.getString("id")
-                view.findViewById<TextView>(R.id.textView6).text = id
-            }
+            view.findViewById<EditText>(R.id.slot_title_edit).setText(it.getString("title"))
+            view.findViewById<EditText>(R.id.slot_description_edit).setText(it.getString("description"))
+            view.findViewById<EditText>(R.id.slot_date_and_time_edit).setText(it.getString("dateAndTime"))
+            view.findViewById<EditText>(R.id.slot_duration_edit).setText(it.getString("duration"))
+            view.findViewById<EditText>(R.id.slot_location_edit).setText(it.getString("location"))
+
         }
 
     }
