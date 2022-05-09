@@ -49,6 +49,7 @@ class TimeSlotAdapter(val data:MutableList<TimeSlot>): RecyclerView.Adapter<Time
         fun bind(timeslot: TimeSlot, action: (v: View)->Unit) {
             title.text = timeslot.title
             card.setOnClickListener(action)
+
             edit.setOnClickListener {
                 //Cliccando il tasto edit nella Lista
                 val bundle = Bundle()

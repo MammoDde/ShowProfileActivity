@@ -13,6 +13,7 @@ import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -63,15 +64,7 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         l.add(prova)
         l.add(prova1)
 
-        fab.setOnClickListener{
-            //aggiungere un nuovo elemento alla lista
-            //il nuovo elemento deve essere creato dall'utente quindi bisogna creare una pagina
-            //in cui l'utente può creare il time slot
-            l.add(prova2)
-            for(adv in l) {
-                Log.d("lista",adv.title)
-            }
-        }
+
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
             //qui i dati da caricare
@@ -81,6 +74,20 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         //qua andiamo a caricare i dati nell'interfaccia
         val adapter = TimeSlotAdapter(l)
         rv.adapter = adapter
+
+        fab.setOnClickListener{
+            //aggiungere un nuovo elemento alla lista
+            //il nuovo elemento deve essere creato dall'utente quindi bisogna creare una pagina
+            //in cui l'utente può creare il time slot
+
+            //val bundle = Bundle()
+            //it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
+            l.add(prova2)
+            //adapter.notifyDataSetChanged()
+            for(adv in l) {
+                Log.d("lista",adv.title)
+            }
+        }
 
         return root
     }
