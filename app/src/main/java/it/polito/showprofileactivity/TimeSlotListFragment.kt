@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 
 class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
@@ -28,12 +29,15 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_time_slot_list, container, false)
         val rv = root.findViewById<RecyclerView>(R.id.rv)
+        val fab = root.findViewById<FloatingActionButton>(R.id.fab)
         rv.layoutManager = LinearLayoutManager(root.context)
 
         val l = mutableListOf<TimeSlot>()
         //creo elemento prova da passare alla mutableList
         val prova = TimeSlot()
         val prova1 = TimeSlot()
+        val prova2 = TimeSlot()
+
 
         prova.id = 1
         prova.title = "titolo"
@@ -49,9 +53,25 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         prova1.location = "Torino1"
         prova1.duration = "2h1"
 
+        prova2.id = 3
+        prova2.title = "titolo2"
+        prova2.description = "descrizione2"
+        prova2.dateAndTime = "Data personale2"
+        prova2.location = "Torino2"
+        prova2.duration = "2h2"
 
         l.add(prova)
         l.add(prova1)
+
+        fab.setOnClickListener{
+            //aggiungere un nuovo elemento alla lista
+            //il nuovo elemento deve essere creato dall'utente quindi bisogna creare una pagina
+            //in cui l'utente può creare il time slot
+            l.add(prova2)
+            for(adv in l) {
+                Log.d("lista",adv.title)
+            }
+        }
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
             //qui i dati da caricare
