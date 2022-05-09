@@ -46,6 +46,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setCheckedItem(R.id.nav_home)
+
         // quando si clicca nel menu laterale questo cambia subito fragment
         //navView.setupWithNavController(navController)
 
