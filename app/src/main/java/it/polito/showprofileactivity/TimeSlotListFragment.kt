@@ -1,23 +1,18 @@
 package it.polito.showprofileactivity
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.viewModels
-import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.*
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.android.material.navigation.NavigationView
 
 
 class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
@@ -30,6 +25,13 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_time_slot_list, container, false)
+        val navView: NavigationView? = activity?.findViewById(R.id.nav_view)
+        if (navView != null) {
+            navView.setCheckedItem(R.id.nav_adv_list)
+        }
+        (activity as MainActivity).supportActionBar?.setHomeButtonEnabled(true)
+        (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         val rv = root.findViewById<RecyclerView>(R.id.rv)
         val fab = root.findViewById<FloatingActionButton>(R.id.fab)
         rv.layoutManager = LinearLayoutManager(root.context)

@@ -42,11 +42,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home
+                R.id.nav_adv_list
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setCheckedItem(R.id.nav_home)
+        navView.setCheckedItem(R.id.nav_adv_list)
 
         // quando si clicca nel menu laterale questo cambia subito fragment
         //navView.setupWithNavController(navController)
@@ -61,20 +61,26 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
 
+        if(item.itemId == R.id.nav_home){
+            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_home)
+            supportActionBar?.title = "Home"
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        }
+
         if(item.itemId == R.id.nav_edit_profile){
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_editProfileActivity)
+            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_edit_profile)
             supportActionBar?.title = "Edit profile"
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         if(item.itemId == R.id.nav_adv_list){
             supportActionBar?.title = "My time slots"
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_advListFragment)
+            //findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_advListFragment)
         }
         if(item.itemId == R.id.nav_check){
             val bundle = Bundle()
             val string = "Funziona"
             bundle.putString("id", string)
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_nav_check, bundle)
+            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_check, bundle)
             supportActionBar?.title = "Check"
         }
         drawerLayout.closeDrawer(GravityCompat.START)

@@ -30,10 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         //Tutte le volte che si ritorna nell'HomeFragment viene settato come clicked il tasto home nel menu laterale
-        val navView: NavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.setCheckedItem(R.id.nav_home)
-        }
+        //TODO : quando siamo nella home del profilo non possiamo andare direttamente ad editarlo.
 
         //Caricamento shared preferences
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)

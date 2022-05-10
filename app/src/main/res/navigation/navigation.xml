@@ -3,24 +3,59 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/navigation"
-    app:startDestination="@id/nav_home">
+    app:startDestination="@id/nav_adv_list">
+    <fragment
+        android:id="@+id/nav_adv_list"
+        android:name="it.polito.showprofileactivity.TimeSlotListFragment"
+        android:label="My time slots" >
+        <action
+            android:id="@+id/action_nav_adv_list_to_nav_slot_details"
+            app:destination="@id/nav_slot_details"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_adv_list_to_timeSlotEditFragment"
+            app:destination="@id/timeSlotEditFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_nav_adv_list_to_nav_home"
+            app:destination="@id/nav_home"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+        <action
+            android:id="@+id/action_nav_adv_list_to_nav_check"
+            app:destination="@id/nav_check"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_nav_adv_list_to_nav_edit_profile"
+            app:destination="@id/nav_edit_profile"
+            app:enterAnim="@android:anim/fade_in"
+            app:exitAnim="@android:anim/fade_out"
+            app:popEnterAnim="@android:anim/fade_in"
+            app:popExitAnim="@android:anim/fade_out" />
+    </fragment>
     <fragment
         android:id="@+id/nav_home"
         android:name="it.polito.showprofileactivity.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home" >
         <action
-            android:id="@+id/action_nav_home_to_nav_check"
-            app:destination="@id/nav_check" />
-        <action
             android:id="@+id/action_nav_home_to_editProfileActivity"
-            app:destination="@id/nav_edit_profile" />
-        <action
-            android:id="@+id/action_nav_home_to_editProfileFragment"
-            app:destination="@id/nav_edit_profile" />
-        <action
-            android:id="@+id/action_nav_home_to_advListFragment"
-            app:destination="@id/nav_adv_list" />
+            app:destination="@id/nav_edit_profile"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/nav_check"
@@ -31,23 +66,16 @@
         android:name="it.polito.showprofileactivity.EditProfileFragment"
         android:label="Edit Profile" />
     <fragment
-        android:id="@+id/nav_adv_list"
-        android:name="it.polito.showprofileactivity.TimeSlotListFragment"
-        android:label="My time slots" >
-        <action
-            android:id="@+id/action_nav_adv_list_to_nav_slot_details"
-            app:destination="@id/nav_slot_details" />
-        <action
-            android:id="@+id/action_nav_adv_list_to_timeSlotEditFragment"
-            app:destination="@id/timeSlotEditFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_slot_details"
         android:name="it.polito.showprofileactivity.TimeSlotDetailsFragment"
         android:label="Time slot details" >
         <action
             android:id="@+id/action_nav_slot_details_to_timeSlotEditFragment"
-            app:destination="@id/timeSlotEditFragment" />
+            app:destination="@id/timeSlotEditFragment"
+            app:enterAnim="@android:anim/slide_in_left"
+            app:exitAnim="@android:anim/slide_out_right"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/timeSlotEditFragment"
