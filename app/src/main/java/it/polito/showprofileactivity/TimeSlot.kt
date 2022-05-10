@@ -25,13 +25,13 @@ class TimeSlot {
     @ColumnInfo(name = "title")
     var title:String = ""
     @ColumnInfo(name = "description")
-    var description:String =""
+    var description:String = ""
     @ColumnInfo(name = "dateAndTime")
-    var dateAndTime:String =""
+    var dateAndTime:String = ""
     @ColumnInfo(name = "duration")
-    var duration:String =""
+    var duration:String = ""
     @ColumnInfo(name = "location")
-    var location:String =""
+    var location:String = ""
 
     override fun toString() = "{ id:$id, title:\"$title\", description:\"$description\", dateAndTime:\"$dateAndTime\", duration: \"$duration\", location:\"$location\"}"
 }

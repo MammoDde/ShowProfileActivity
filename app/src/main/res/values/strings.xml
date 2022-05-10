@@ -43,4 +43,6 @@
     <string name="open">open</string>
     <string name="close">close</string>
     <string name="add_adv">add_adv</string>
+    <string name="create_new_time_slot">Create new time slot</string>
+    <string name="edit_time_slot">Edit time slot</string>
 </resources>

@@ -1,6 +1,7 @@
 package it.polito.showprofileactivity
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import kotlin.concurrent.thread
@@ -16,6 +17,12 @@ class TimeSlotVM(application: Application): AndroidViewModel(application) {
     fun add(timeSlot: TimeSlot) {
         thread {
             repo.add(timeSlot)
+        }
+    }
+
+    fun update(timeSlot: TimeSlot) {
+        thread {
+            repo.update(timeSlot)
         }
     }
 

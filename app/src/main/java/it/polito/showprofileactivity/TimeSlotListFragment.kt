@@ -65,43 +65,19 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
 
         //l.add(prova)
         //l.add(prova1)
-        val adapter = TimeSlotAdapter(l)
+
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
-            //qui i dati da caricar
-            //questo è testato ed è ok
-            /*for(i in 0..it.size-1) {
-                val t = TimeSlot()
-                t.id = it[i].id
-                t.title = it[i].title
-                t.description = it[i].description
-                t.dateAndTime = it[i].dateAndTime
-                t.location = it[i].location
-                t.duration = it[i].duration
-                l.add(t)
-
-                Log.d("observer",l[i].toString())
-                //questo è testato ed è ok
-
-            }*/
-            //it?.let { rv.adapter?.notifyDataSetChanged() }
-            it.let { val adapter = TimeSlotAdapter(it as MutableList<TimeSlot>)
-            rv.adapter = adapter}
+            it.let {
+                val adapter = TimeSlotAdapter(it as MutableList<TimeSlot>)
+                rv.adapter = adapter
+            }
 
         }
 
-        //qua andiamo a caricare i dati nell'interfaccia
-        val adapter1 = TimeSlotAdapter(l)
-
-        rv.adapter = adapter1
-
-
-
         fab.setOnClickListener{
             //aggiungere un nuovo elemento alla lista
-            //il nuovo elemento deve essere creato dall'utente quindi bisogna creare una pagina
-            //in cui l'utente può creare il time slot
-
+            //il nuovo elemento deve essere creato dall'utente utilizzando il fragment TimeSlotEditFragment
             val bundle = Bundle()
             //Log.d("bundle",bundle.toString())
             it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)

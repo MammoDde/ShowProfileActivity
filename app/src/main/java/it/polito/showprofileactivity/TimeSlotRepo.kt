@@ -1,6 +1,7 @@
 package it.polito.showprofileactivity
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.LiveData
 
 class TimeSlotRepo(application: Application) {
@@ -18,5 +19,17 @@ class TimeSlotRepo(application: Application) {
         }
         TimeSlotDAO.insertTimeSlot(i)
     }
+
+    fun update(timeSlot: TimeSlot) {
+        val i = TimeSlot().also {
+            it.title = timeSlot.title
+            it.description = timeSlot.description
+            it.dateAndTime = timeSlot.dateAndTime
+            it.duration = timeSlot.duration
+            it.location = timeSlot.location
+        }
+        TimeSlotDAO.updateTimeSlot(i)
+    }
+
     fun timeSlots(): LiveData<List<TimeSlot>> = TimeSlotDAO.findAll()
 }
