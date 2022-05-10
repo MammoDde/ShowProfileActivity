@@ -17,16 +17,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/tag_description_edit_slot"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:minHeight="48dp"
+        android:text="Description: "
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        app:layout_constraintBottom_toTopOf="@id/slot_date_and_time_edit"
+        app:layout_constraintEnd_toStartOf="@id/slot_description_edit"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/slot_title_edit" />
+
+
     <EditText
         android:id="@+id/slot_description_edit"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:minHeight="48dp"
-        android:text="Description : descrizione"
+        android:text="descrizione"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
         app:layout_constraintBottom_toTopOf="@id/slot_date_and_time_edit"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tag_description_edit_slot"
         app:layout_constraintTop_toBottomOf="@+id/slot_title_edit" />
 
     <EditText
