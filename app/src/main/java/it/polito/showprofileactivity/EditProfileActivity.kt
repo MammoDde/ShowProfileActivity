@@ -86,17 +86,19 @@ class EditProfileActivity : AppCompatActivity() {
                 }
 
             }
-
             popupMenu.inflate(R.menu.photo_menu)
             popupMenu.show()
         }
     }
+
+
 
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val image = findViewById<ImageView>(R.id.imageView)
         if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
             if(data != null) {
+                //Da data, ricevuto dall'activity, recuperiamo l'immagine
                 val imageBitmap = data.extras?.get("data") as Bitmap
 
                 // set bitmap of edit view

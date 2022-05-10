@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="start|center_horizontal"
             android:text="@string/title"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display3" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Display2" />
 
         <ImageButton
             android:id="@+id/edit"

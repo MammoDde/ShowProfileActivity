@@ -45,4 +45,8 @@
     <string name="add_adv">add_adv</string>
     <string name="create_new_time_slot">Create New Time Slot</string>
     <string name="edit_time_slot">Edit Time Slot</string>
+    <string name="duration">Duration (es: 2h)</string>
+    <string name="set_date_and_time">Set date and time</string>
+    <string name="_05_05_2022">05/05/2022</string>
+    <string name="time_slot_title">Time Slot Title</string>
 </resources>
