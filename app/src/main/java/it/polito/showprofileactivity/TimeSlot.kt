@@ -18,7 +18,7 @@ import androidx.room.Index
 import androidx.room.PrimaryKey
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-@Entity(tableName = "items", indices = [Index("title")])
+@Entity(tableName = "items")
 class TimeSlot {
     @PrimaryKey(autoGenerate = true)
     var id:Int = 0
@@ -54,6 +54,7 @@ class TimeSlotAdapter(val data: MutableList<TimeSlot>): RecyclerView.Adapter<Tim
             edit.setOnClickListener {
                 //Cliccando il tasto edit nella Lista
                 val bundle = Bundle()
+                bundle.putString("id", timeslot.id.toString())
                 bundle.putString("title", timeslot.title)
                 bundle.putString("description", timeslot.description)
                 bundle.putString("dateAndTime", timeslot.dateAndTime)

@@ -20,7 +20,6 @@ class TimeSlotEditFragment : Fragment() {
 
     val vm by viewModels<TimeSlotVM>()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -105,15 +104,17 @@ class TimeSlotEditFragment : Fragment() {
                             updatedTimeSlot.location = view.findViewById<EditText>(R.id.slot_location_edit).text.toString()
 
                             // if you want onBackPressed() to be called as normal afterwards
-                            Log.d("back", updatedTimeSlot.toString())
 
                             //il testo cambia ed è corretto ma poi nella lista a schermo
                             //ovviamente no perché quella va a prendere dal db
                             //se facciamo qui la update dovrebbe essere tutto a posto
 
                             //proviamo l'update
-                            vm.update(updatedTimeSlot)
 
+                            //funziona l'update
+                            updatedTimeSlot.id = it.getString("id")!!.toInt()
+                            Log.d("back", updatedTimeSlot.toString())
+                            vm.update(updatedTimeSlot)
 
                             if (isEnabled) {
                                 isEnabled = false

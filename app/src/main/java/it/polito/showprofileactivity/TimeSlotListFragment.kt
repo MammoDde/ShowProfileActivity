@@ -24,7 +24,6 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
 
     val vm by viewModels<TimeSlotVM>()
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -79,59 +78,12 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
             //aggiungere un nuovo elemento alla lista
             //il nuovo elemento deve essere creato dall'utente utilizzando il fragment TimeSlotEditFragment
             val bundle = Bundle()
-            //Log.d("bundle",bundle.toString())
             it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
-            //l.add(prova2)
-            //adapter.notifyDataSetChanged()
-            for(adv in l) {
-                Log.d("lista",adv.title)
-            }
+
         }
-
-        //qua andiamo a caricare i dati nell'interfaccia
-
 
         return root
     }
 
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        super.onViewCreated(view, savedInstanceState)
-
-       // val vm = activity?.let { ViewModelProvider(it).get(AdvertisementsVM::class.java) }
-
-/*
-        val rv = view.findViewById<RecyclerView>(R.id.rv)
-        if (rv != null) {
-            rv.layoutManager = LinearLayoutManager(requireView().context)
-        }
-        val l = mutableListOf<Advertisement>()
-
-        //defining ViewModel
-        vm.items.observe(viewLifecycleOwner) {
-            //qui i dati da caricare
-            println("Inside viewmodel")
-
-            for(i in 1..it.size) {
-                val i = Advertisement(it[i].id, it[i].title, it[i].description, it[i].dateAndTime, it[i].duration, it[i].location)
-                l.add(i)
-            }
-
-        }
-        //qua andiamo a caricare i dati nell'interfaccia
-        val adapter = AdvertisementAdapter(l)
-        if (rv != null) {
-            rv.adapter = adapter
-        }*/
-    }
-
-
-
-    override fun onStart() {
-        super.onStart()
-
-
-
-    }
 }

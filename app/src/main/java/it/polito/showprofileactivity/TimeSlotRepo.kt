@@ -22,6 +22,7 @@ class TimeSlotRepo(application: Application) {
 
     fun update(timeSlot: TimeSlot) {
         val i = TimeSlot().also {
+            it.id = timeSlot.id
             it.title = timeSlot.title
             it.description = timeSlot.description
             it.dateAndTime = timeSlot.dateAndTime
