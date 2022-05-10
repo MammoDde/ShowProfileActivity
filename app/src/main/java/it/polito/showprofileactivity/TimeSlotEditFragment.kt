@@ -1,24 +1,30 @@
 package it.polito.showprofileactivity
 
 import android.annotation.SuppressLint
+import android.app.DatePickerDialog
+import android.app.TimePickerDialog
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.EditText
-import android.widget.TextView
-import android.widget.Toast
-import android.widget.Toolbar
+import android.widget.*
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import org.w3c.dom.Text
+import java.text.SimpleDateFormat
+import java.util.*
 
 class TimeSlotEditFragment : Fragment() {
 
     val vm by viewModels<TimeSlotVM>()
+
+    var cal = Calendar.getInstance()
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -35,15 +41,69 @@ class TimeSlotEditFragment : Fragment() {
 
     }
 
+    // create an OnDateSetListener
+    private val dateSetListener = object : DatePickerDialog.OnDateSetListener {
+        override fun onDateSet(view: DatePicker, year: Int, monthOfYear: Int,
+                               dayOfMonth: Int) {
+            cal.set(Calendar.YEAR, year)
+            cal.set(Calendar.MONTH, monthOfYear)
+            cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
+            updateDateInView()
+        }
+    }
+
+    // create an OnDateSetListener
+    private val timeSetListener = object : TimePickerDialog.OnTimeSetListener {
+        override fun onTimeSet(view: TimePicker, hour: Int, minute: Int) {
+            cal.set(Calendar.HOUR, hour)
+            cal.set(Calendar.MINUTE, minute)
+            updateTimeInView()
+        }
+    }
+
+    private fun updateDateInView() {
+        val dateView = view?.findViewById<TextView>(R.id.slot_date_and_time_edit)
+        val myFormat = "MM/dd/yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        if (dateView != null) {
+            dateView.text = sdf.format(cal.getTime())
+            Log.d("data", dateView.text.toString())
+        }
+    }
+
+    private fun updateTimeInView() {
+        val dateView = view?.findViewById<TextView>(R.id.slot_date_and_time_edit)
+        Log.d("data", cal.time.toString())
+
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        view.findViewById<Button>(R.id.chooseDateAndTime).setOnClickListener{
+
+            DatePickerDialog(this.requireContext(),
+                dateSetListener,
+                // set DatePickerDialog to point to today's date when it loads up
+                cal.get(Calendar.YEAR),
+                cal.get(Calendar.MONTH),
+                cal.get(Calendar.DAY_OF_MONTH)).show()
+
+            TimePickerDialog(this.requireContext(),
+                timeSetListener,
+                cal.get(Calendar.HOUR),
+                cal.get(Calendar.MINUTE), true).show()
+
+        }
 
         //costrutto necessario per leggere dai dati passati dal bundle
         arguments?.let {
             if(it.isEmpty){
                 //CASO ADD: in questo if andiamo a creare un nuovo time slot
+
                 //title of action bar changed
                 (activity as MainActivity).supportActionBar?.setTitle(R.string.create_new_time_slot)
+
                 Log.d("back","bundle is empty")
                 requireActivity()
                     .onBackPressedDispatcher
@@ -54,7 +114,7 @@ class TimeSlotEditFragment : Fragment() {
 
                             view.findViewById<EditText>(R.id.slot_title_edit).text = view.findViewById<EditText>(R.id.slot_title_edit).text
                             view.findViewById<EditText>(R.id.slot_description_edit).text = view.findViewById<EditText>(R.id.slot_description_edit).text
-                            view.findViewById<EditText>(R.id.slot_date_and_time_edit).text = view.findViewById<EditText>(R.id.slot_date_and_time_edit).text
+                            view.findViewById<TextView>(R.id.slot_date_and_time_edit).text = view.findViewById<TextView>(R.id.slot_date_and_time_edit).text.toString()
                             view.findViewById<EditText>(R.id.slot_duration_edit).text = view.findViewById<EditText>(R.id.slot_duration_edit).text
                             view.findViewById<EditText>(R.id.slot_location_edit).text = view.findViewById<EditText>(R.id.slot_location_edit).text
 
@@ -62,7 +122,7 @@ class TimeSlotEditFragment : Fragment() {
 
                             adv.title = view.findViewById<EditText>(R.id.slot_title_edit).text.toString()
                             adv.description = view.findViewById<EditText>(R.id.slot_description_edit).text.toString()
-                            adv.dateAndTime = view.findViewById<EditText>(R.id.slot_date_and_time_edit).text.toString()
+                            adv.dateAndTime = view.findViewById<TextView>(R.id.slot_date_and_time_edit).text.toString()
                             adv.duration = view.findViewById<EditText>(R.id.slot_duration_edit).text.toString()
                             adv.location = view.findViewById<EditText>(R.id.slot_location_edit).text.toString()
 
@@ -86,7 +146,7 @@ class TimeSlotEditFragment : Fragment() {
                 //settaggio campi nella edit
                 view.findViewById<EditText>(R.id.slot_title_edit).setText(it.getString("title"))
                 view.findViewById<EditText>(R.id.slot_description_edit).setText(it.getString("description"))
-                view.findViewById<EditText>(R.id.slot_date_and_time_edit).setText(it.getString("dateAndTime"))
+                view.findViewById<TextView>(R.id.slot_date_and_time_edit).setText(it.getString("dateAndTime"))
                 view.findViewById<EditText>(R.id.slot_duration_edit).setText(it.getString("duration"))
                 view.findViewById<EditText>(R.id.slot_location_edit).setText(it.getString("location"))
 
@@ -99,7 +159,7 @@ class TimeSlotEditFragment : Fragment() {
                             val updatedTimeSlot = TimeSlot()
                             updatedTimeSlot.title = view.findViewById<EditText>(R.id.slot_title_edit).text.toString()
                             updatedTimeSlot.description = view.findViewById<EditText>(R.id.slot_description_edit).text.toString()
-                            updatedTimeSlot.dateAndTime = view.findViewById<EditText>(R.id.slot_date_and_time_edit).text.toString()
+                            updatedTimeSlot.dateAndTime = view.findViewById<TextView>(R.id.slot_date_and_time_edit).text.toString()
                             updatedTimeSlot.duration = view.findViewById<EditText>(R.id.slot_duration_edit).text.toString()
                             updatedTimeSlot.location = view.findViewById<EditText>(R.id.slot_location_edit).text.toString()
 
