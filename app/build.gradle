@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'org.jetbrains.kotlin.kapt' apply true
+    id 'com.google.gms.google-services' apply true
 }
 
 android {
@@ -53,6 +54,8 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation 'androidx.room:room-ktx:2.4.2'
     implementation 'androidx.room:room-runtime:2.4.2'
+    implementation platform('com.google.firebase:firebase-bom:30.0.0')
+    implementation 'com.google.firebase:firebase-analytics-ktx'
     kapt 'androidx.room:room-compiler:2.4.2'
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

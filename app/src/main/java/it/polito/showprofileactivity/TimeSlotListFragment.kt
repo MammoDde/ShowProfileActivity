@@ -63,8 +63,8 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         prova2.location = "Torino2"
         prova2.duration = "2h2"
 
-        //l.add(prova)
-        //l.add(prova1)
+        l.add(prova)
+        l.add(prova1)
         val adapter = TimeSlotAdapter(l)
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {

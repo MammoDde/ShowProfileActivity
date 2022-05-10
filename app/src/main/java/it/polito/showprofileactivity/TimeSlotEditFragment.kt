@@ -14,16 +14,22 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 
 class TimeSlotEditFragment : Fragment() {
-
+    var day = 0
+    var month = 0
+    var year = 0
+    var savedDay = 0
+    var savedMonth = 0
+    var savedYear = 0
+    var savedHour = 0
+    var savedMinute = 0
     val vm by viewModels<TimeSlotVM>()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
         return inflater.inflate(R.layout.fragment_time_slot_edit, container, false)
-
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
