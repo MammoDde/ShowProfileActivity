@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
 
-        if(item.itemId == R.id.nav_home){
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_home)
+        if(item.itemId == R.id.nav_show_profile){
+            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_show_profile)
         }
 
         if(item.itemId == R.id.nav_edit_profile){

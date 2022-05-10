@@ -23,8 +23,8 @@
             app:popEnterAnim="@android:anim/slide_in_left"
             app:popExitAnim="@android:anim/slide_out_right" />
         <action
-            android:id="@+id/action_nav_adv_list_to_nav_home"
-            app:destination="@id/nav_home"
+            android:id="@+id/action_nav_adv_list_to_nav_show_profile"
+            app:destination="@id/nav_show_profile"
             app:enterAnim="@android:anim/fade_in"
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
@@ -38,18 +38,10 @@
             app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
-        android:id="@+id/nav_home"
-        android:name="it.polito.showprofileactivity.HomeFragment"
+        android:id="@+id/nav_show_profile"
+        android:name="it.polito.showprofileactivity.ShowProfileFragment"
         android:label="My Profile"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_nav_home_to_editProfileActivity"
-            app:destination="@id/nav_edit_profile"
-            app:enterAnim="@android:anim/slide_in_left"
-            app:exitAnim="@android:anim/slide_out_right"
-            app:popEnterAnim="@android:anim/slide_in_left"
-            app:popExitAnim="@android:anim/slide_out_right" />
-    </fragment>
+        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/nav_edit_profile"
         android:name="it.polito.showprofileactivity.EditProfileFragment"

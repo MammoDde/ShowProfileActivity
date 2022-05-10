@@ -14,7 +14,7 @@ import org.json.JSONObject
 
 private var currentPhotoPath: String? = null
 
-class HomeFragment : Fragment(R.layout.fragment_home) {
+class ShowProfileFragment : Fragment(R.layout.fragment_home) {
     private var photo: Photo = Photo()
 
     override fun onCreateView(
