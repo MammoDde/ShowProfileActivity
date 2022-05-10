@@ -119,12 +119,25 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         val saveButton = root.findViewById<Button>(R.id.save_button)
 
         saveButton.setOnClickListener {
-            val tv = view?.findViewById<TextView>(R.id.edit_fullname)
+            val tvFullName = view?.findViewById<TextView>(R.id.edit_fullname)
+            val tvNickname = view?.findViewById<TextView>(R.id.edit_nickname)
+            val tvEmail = view?.findViewById<TextView>(R.id.edit_email)
+            val tvLocation = view?.findViewById<TextView>(R.id.edit_location)
+            val tvSkill1 = view?.findViewById<TextView>(R.id.edit_skill1)
+            val tvSkill2 = view?.findViewById<TextView>(R.id.edit_skill2)
+            val tvDescr1 = view?.findViewById<TextView>(R.id.edit_description1)
+            val tvDescr2 = view?.findViewById<TextView>(R.id.edit_description2)
 
-            val profileInfo = "{'full name' : '${tv?.text}', nickname : '${tv?.text}', " +
-                    "email : '${tv?.text}', location : '${tv?.text}', skill1 : '${tv?.text}'," +
-                    " skill2 : '${tv?.text}', description1 : '${tv?.text}', " +
-                    "description2 : '${tv?.text}', " + "path: '${currentPhotoPath}'}"
+            val profileInfo = "" +
+                    "{'full name' : '${tvFullName?.text}', " +
+                    "nickname : '${tvNickname?.text}', " +
+                    "email : '${tvEmail?.text}', " +
+                    "location : '${tvLocation?.text}', " +
+                    "skill1 : '${tvSkill1?.text}'," +
+                    "skill2 : '${tvSkill2?.text}', " +
+                    "description1 : '${tvDescr1?.text}', " +
+                    "description2 : '${tvDescr2?.text}'," +
+                    " " + "path: '${currentPhotoPath}'}"
             val json = JSONObject(profileInfo)
 
             val sharedPref = activity?.getPreferences(MODE_PRIVATE)

@@ -9,7 +9,7 @@
     <string name="corso_duca_degli_abruzzi_torino">Corso Duca degli Abruzzi, Torino</string>
     <string name="other">Other</string>
     <string name="mario_rossi">Mario Rossi</string>
-    <string name="skills">Skills:</string>
+    <string name="skills">Skills</string>
     <string name="i_take_care_of_baby">I take care of your babies</string>
     <string name="babysitting">BabySitting</string>
     <string name="a_good_english_teacher">A good english teacher that has studied in london for 10 years, my motherlanguage is italian tho</string>
@@ -31,7 +31,7 @@
     <string name="name_and_surname">Name and surname</string>
     <string name="description">Description</string>
     <string name="skill">Skill</string>
-    <string name="your_skills">Your skills:</string>
+    <string name="your_skills">Your skills</string>
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="string_gallery" />

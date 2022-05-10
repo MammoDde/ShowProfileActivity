@@ -9,10 +9,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
-import com.google.android.material.navigation.NavigationView
-import it.polito.showprofileactivity.databinding.ActivityMainBinding
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -20,7 +16,6 @@ private var currentPhotoPath: String? = null
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private var photo: Photo = Photo()
-    private lateinit var binding: ActivityMainBinding
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,7 +25,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
         //Tutte le volte che si ritorna nell'HomeFragment viene settato come clicked il tasto home nel menu laterale
-        //TODO : quando siamo nella home del profilo non possiamo andare direttamente ad editarlo.
 
         //Caricamento shared preferences
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
