@@ -48,8 +48,14 @@ class TimeSlotEditFragment : Fragment() {
             cal.set(Calendar.YEAR, year)
             cal.set(Calendar.MONTH, monthOfYear)
             cal.set(Calendar.DAY_OF_MONTH, dayOfMonth)
-            updateDateInView()
+
+            TimePickerDialog(context,
+                timeSetListener,
+                cal.get(Calendar.HOUR),
+                cal.get(Calendar.MINUTE), true).show()
+
         }
+
     }
 
     // create an OnDateSetListener
@@ -63,8 +69,8 @@ class TimeSlotEditFragment : Fragment() {
 
     private fun updateDateInView() {
         val dateView = view?.findViewById<TextView>(R.id.slot_date_and_time_edit)
-        val myFormat = "MM/dd/yyyy" // mention the format you need
-        val sdf = SimpleDateFormat(myFormat, Locale.UK)
+        val myFormat = "dd/MM/yyyy" // mention the format you need
+        val sdf = SimpleDateFormat(myFormat, Locale.ITALIAN)
         if (dateView != null) {
             dateView.text = sdf.format(cal.getTime())
             Log.d("data", dateView.text.toString())
@@ -72,8 +78,9 @@ class TimeSlotEditFragment : Fragment() {
     }
 
     private fun updateTimeInView() {
-        val dateView = view?.findViewById<TextView>(R.id.slot_date_and_time_edit)
+        view?.findViewById<TextView>(R.id.slot_date_and_time_edit)?.text = cal.time.toString()
         Log.d("data", cal.time.toString())
+
 
     }
 
@@ -81,18 +88,12 @@ class TimeSlotEditFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         view.findViewById<Button>(R.id.chooseDateAndTime).setOnClickListener{
-
             DatePickerDialog(this.requireContext(),
                 dateSetListener,
                 // set DatePickerDialog to point to today's date when it loads up
                 cal.get(Calendar.YEAR),
                 cal.get(Calendar.MONTH),
                 cal.get(Calendar.DAY_OF_MONTH)).show()
-
-            TimePickerDialog(this.requireContext(),
-                timeSetListener,
-                cal.get(Calendar.HOUR),
-                cal.get(Calendar.MINUTE), true).show()
 
         }
 
