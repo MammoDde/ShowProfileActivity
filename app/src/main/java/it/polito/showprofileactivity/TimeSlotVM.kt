@@ -12,7 +12,12 @@ class TimeSlotVM(application: Application): AndroidViewModel(application) {
 
     val value: LiveData<List<TimeSlot>> = repo.timeSlots()
 
+
     val size: LiveData<Int> = repo.count()
+
+    fun get(id: Int): LiveData<TimeSlot> {
+        return repo.getTimeSlot(id)
+    }
 
     fun add(timeSlot: TimeSlot) {
         thread {

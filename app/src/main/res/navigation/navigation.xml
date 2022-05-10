@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/nav_adv_list"
         android:name="it.polito.showprofileactivity.TimeSlotListFragment"
-        android:label="My time slots" >
+        android:label="My Time Slots" >
         <action
             android:id="@+id/action_nav_adv_list_to_nav_slot_details"
             app:destination="@id/nav_slot_details"
@@ -30,13 +30,6 @@
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
         <action
-            android:id="@+id/action_nav_adv_list_to_nav_check"
-            app:destination="@id/nav_check"
-            app:enterAnim="@anim/nav_default_enter_anim"
-            app:exitAnim="@anim/nav_default_exit_anim"
-            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
-        <action
             android:id="@+id/action_nav_adv_list_to_nav_edit_profile"
             app:destination="@id/nav_edit_profile"
             app:enterAnim="@android:anim/fade_in"
@@ -47,7 +40,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="it.polito.showprofileactivity.HomeFragment"
-        android:label="Home"
+        android:label="My Profile"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_nav_home_to_editProfileActivity"
@@ -58,17 +51,13 @@
             app:popExitAnim="@android:anim/slide_out_right" />
     </fragment>
     <fragment
-        android:id="@+id/nav_check"
-        android:name="it.polito.showprofileactivity.EditCheck"
-        android:label="Fragment check" />
-    <fragment
         android:id="@+id/nav_edit_profile"
         android:name="it.polito.showprofileactivity.EditProfileFragment"
         android:label="Edit Profile" />
     <fragment
         android:id="@+id/nav_slot_details"
         android:name="it.polito.showprofileactivity.TimeSlotDetailsFragment"
-        android:label="Time slot details" >
+        android:label="Time Slot Details" >
         <action
             android:id="@+id/action_nav_slot_details_to_timeSlotEditFragment"
             app:destination="@id/timeSlotEditFragment"
@@ -79,7 +68,6 @@
     </fragment>
     <fragment
         android:id="@+id/timeSlotEditFragment"
-        android:name="it.polito.showprofileactivity.TimeSlotEditFragment"
-        android:label="Edit time slot" />
+        android:name="it.polito.showprofileactivity.TimeSlotEditFragment"/>
 
 </navigation>

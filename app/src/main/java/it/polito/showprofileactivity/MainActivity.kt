@@ -14,17 +14,12 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import com.google.android.material.navigation.NavigationView
 import it.polito.showprofileactivity.databinding.ActivityMainBinding
 
-private var currentPhotoPath: String? = null
 
 @Suppress("DEPRECATION")
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
-
-    private var photo: Photo = Photo()
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-
-    val vm by viewModels<TimeSlotVM>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,9 +43,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setCheckedItem(R.id.nav_adv_list)
 
-        // quando si clicca nel menu laterale questo cambia subito fragment
-        //navView.setupWithNavController(navController)
-
         //questo metodo invece ci serve per abilitare un listener quando clicchiamo il menu laterale
         navView.setNavigationItemSelectedListener(this)
 
@@ -63,25 +55,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         if(item.itemId == R.id.nav_home){
             findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_home)
-            supportActionBar?.title = "Home"
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
         if(item.itemId == R.id.nav_edit_profile){
             findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_edit_profile)
-            supportActionBar?.title = "Edit profile"
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
         if(item.itemId == R.id.nav_adv_list){
-            supportActionBar?.title = "My time slots"
             //findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_home_to_advListFragment)
-        }
-        if(item.itemId == R.id.nav_check){
-            val bundle = Bundle()
-            val string = "Funziona"
-            bundle.putString("id", string)
-            findNavController(R.id.nav_host_fragment_content_main).navigate(R.id.action_nav_adv_list_to_nav_check, bundle)
-            supportActionBar?.title = "Check"
         }
         drawerLayout.closeDrawer(GravityCompat.START)
 

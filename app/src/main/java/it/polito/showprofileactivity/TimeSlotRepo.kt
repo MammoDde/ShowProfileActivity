@@ -33,4 +33,6 @@ class TimeSlotRepo(application: Application) {
     }
 
     fun timeSlots(): LiveData<List<TimeSlot>> = TimeSlotDAO.findAll()
+    fun getTimeSlot(id: Int): LiveData<TimeSlot> = TimeSlotDAO.getTimeSlot(id)
+
 }

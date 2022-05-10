@@ -21,4 +21,7 @@ interface TimeSlotDAO {
     @Query("SELECT * from items")
     fun findAll(): LiveData<List<TimeSlot>>
 
+    @Query("SELECT * from items WHERE id = :id")
+    fun getTimeSlot(id: Int): LiveData<TimeSlot>
+
 }
