@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "26112689570",
+    "project_id": "showprofileactivitydb",
+    "storage_bucket": "showprofileactivitydb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:26112689570:android:fabebd5e1cb9afec589efb",
+        "android_client_info": {
+          "package_name": "it.polito.showprofileactivity"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "26112689570-utiqpbds01ja6ui1fi9m049jmuih1kgu.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBztS63QzRp1AxMr3MpbvunBg7HubNHnHM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "26112689570-utiqpbds01ja6ui1fi9m049jmuih1kgu.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
