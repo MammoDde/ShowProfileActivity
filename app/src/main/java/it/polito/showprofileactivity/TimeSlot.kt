@@ -86,6 +86,7 @@ class TimeSlotAdapter(val data: MutableList<TimeSlot>): RecyclerView.Adapter<Tim
             //cliccando sull'edit si apre il TimeSlotDetailsFragment
             //passaggio di informazioni tra fragment with a Bundle
             val bundle = Bundle()
+            bundle.putString("id",item.id.toString())
             bundle.putString("title", item.title)
             bundle.putString("description", item.description)
             bundle.putString("dateAndTime", item.dateAndTime)
