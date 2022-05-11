@@ -8,6 +8,7 @@ import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.EditText
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -64,6 +65,7 @@ class EditProfileActivity : AppCompatActivity() {
         ed8.setText(desc2)
 
         editButton.setOnClickListener {
+            Log.d("pic","sono qui")
             val popupMenu = PopupMenu(this, it)
             popupMenu.setOnMenuItemClickListener { item ->
                 when (item.itemId){

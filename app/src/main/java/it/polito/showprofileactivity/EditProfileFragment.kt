@@ -40,7 +40,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_edit, container, false)
-
+        val saveButton = root.findViewById<Button>(R.id.save_button)
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val profileInfo =
             "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
@@ -63,6 +63,40 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         val tv6: TextView = root.findViewById(R.id.edit_skill2)
         val tv7: TextView = root.findViewById(R.id.edit_description1)
         val tv8: TextView = root.findViewById(R.id.edit_description2)
+
+        tv1.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv2.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv3.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+            Log.d("email","funzia")
+        }
+        tv4.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv5.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv6.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv7.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv8.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
 
         if (json != null) {
             tv1.text = (json.get("full name").toString())
@@ -116,9 +150,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         }
 
 
-        val saveButton = root.findViewById<Button>(R.id.save_button)
 
         saveButton.setOnClickListener {
+            saveButton.setClickable(false)
+            saveButton.setEnabled(false)
             val tvFullName = view?.findViewById<TextView>(R.id.edit_fullname)
             val tvNickname = view?.findViewById<TextView>(R.id.edit_nickname)
             val tvEmail = view?.findViewById<TextView>(R.id.edit_email)
