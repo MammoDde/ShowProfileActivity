@@ -26,6 +26,8 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
         setHasOptionsMenu(true)
 
 
+
+
         //Caricamento shared preferences
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
