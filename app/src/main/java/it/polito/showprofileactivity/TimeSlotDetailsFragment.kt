@@ -15,9 +15,7 @@ import androidx.navigation.fragment.findNavController
  * create an instance of this fragment.
  */
 class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
     private var id1: Int = 0
 
     val vm by viewModels<TimeSlotVM>()
@@ -38,8 +36,6 @@ class TimeSlotDetailsFragment : Fragment(R.layout.fragment_time_slot_details) {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-
         // Handle item selection
         return when (item.itemId) {
             R.id.icona -> {

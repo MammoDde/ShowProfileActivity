@@ -13,8 +13,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.activity.OnBackPressedCallback
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.textfield.TextInputLayout
 import org.w3c.dom.Text
 import java.text.SimpleDateFormat
 import java.util.*
@@ -22,9 +25,7 @@ import java.util.*
 class TimeSlotEditFragment : Fragment() {
 
     val vm by viewModels<TimeSlotVM>()
-
     var cal = Calendar.getInstance()
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -40,6 +41,8 @@ class TimeSlotEditFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_time_slot_edit, container, false)
 
     }
+
+
 
     // create an OnDateSetListener
     private val dateSetListener = object : DatePickerDialog.OnDateSetListener {
@@ -131,6 +134,11 @@ class TimeSlotEditFragment : Fragment() {
                             Log.d("new adv", adv.toString())
                             vm.add(adv)
 
+                            //Management snackbar
+                            val root = view.rootView
+                            Snackbar.make(root, "Time slot added", Snackbar.LENGTH_LONG)
+                                .show()
+
                             // if you want onBackPressed() to be called as normal afterwards
                             if (isEnabled) {
                                 isEnabled = false
@@ -139,17 +147,27 @@ class TimeSlotEditFragment : Fragment() {
                         }
                     }
                     )
-            }else {
+            } else {
                 //CASO EDIT: modifica di un fragment esistente
                 Log.d("back","bundle is not empty")
+
                 //title of action bar changed
                 (activity as MainActivity).supportActionBar?.setTitle(R.string.edit_time_slot)
+
                 //settaggio campi nella edit
                 view.findViewById<EditText>(R.id.slot_title_edit).setText(it.getString("title"))
-                view.findViewById<EditText>(R.id.slot_description_edit).setText(it.getString("description"))
+                //view.findViewById<EditText>(R.id.slot_description_edit).setText(it.getString("description"))
                 view.findViewById<TextView>(R.id.slot_date_and_time_edit).setText(it.getString("dateAndTime"))
                 view.findViewById<EditText>(R.id.slot_duration_edit).setText(it.getString("duration"))
                 view.findViewById<EditText>(R.id.slot_location_edit).setText(it.getString("location"))
+
+                // Get input text
+                view.findViewById<TextInputLayout>(R.id.slot_description_edit1).editText?.setText(it.getString("description"))
+
+                view.findViewById<TextInputLayout>(R.id.slot_description_edit1).editText?.doOnTextChanged { inputText, _, _, _ ->
+                    // Respond to input text change
+
+                }
 
                 requireActivity()
                     .onBackPressedDispatcher
@@ -159,7 +177,7 @@ class TimeSlotEditFragment : Fragment() {
                             // Do custom work here
                             val updatedTimeSlot = TimeSlot()
                             updatedTimeSlot.title = view.findViewById<EditText>(R.id.slot_title_edit).text.toString()
-                            updatedTimeSlot.description = view.findViewById<EditText>(R.id.slot_description_edit).text.toString()
+                            updatedTimeSlot.description = view.findViewById<TextInputLayout>(R.id.slot_description_edit1).editText?.text.toString()
                             updatedTimeSlot.dateAndTime = view.findViewById<TextView>(R.id.slot_date_and_time_edit).text.toString()
                             updatedTimeSlot.duration = view.findViewById<EditText>(R.id.slot_duration_edit).text.toString()
                             updatedTimeSlot.location = view.findViewById<EditText>(R.id.slot_location_edit).text.toString()
@@ -174,8 +192,15 @@ class TimeSlotEditFragment : Fragment() {
 
                             //funziona l'update
                             updatedTimeSlot.id = it.getString("id")!!.toInt()
-                            Log.d("back", updatedTimeSlot.toString())
                             vm.update(updatedTimeSlot)
+
+                            //Management snackbar
+                            val root = view.rootView
+                            Snackbar.make(root, "Time slot updated", Snackbar.LENGTH_LONG)
+                                .setAction("Redo") {
+                                    //TODO: Responds to click on the action
+                                }
+                                .show()
 
                             if (isEnabled) {
                                 isEnabled = false

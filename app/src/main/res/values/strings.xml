@@ -49,4 +49,5 @@
     <string name="set_date_and_time">Set date and time</string>
     <string name="_05_05_2022">05/05/2022</string>
     <string name="time_slot_title">Time Slot Title</string>
+    <string name="nav_head_avatar">nav_head_avatar</string>
 </resources>

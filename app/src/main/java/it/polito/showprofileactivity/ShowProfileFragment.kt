@@ -3,12 +3,11 @@ package it.polito.showprofileactivity
 import android.content.Context
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import org.json.JSONException
 import org.json.JSONObject
 
@@ -24,7 +23,8 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        //Tutte le volte che si ritorna nell'HomeFragment viene settato come clicked il tasto home nel menu laterale
+        setHasOptionsMenu(true)
+
 
         //Caricamento shared preferences
         val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
@@ -68,8 +68,53 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
             val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
             img.setImageBitmap(bitmap)
         }
+
+
         return root
 
     }
+
+    override fun onCreateOptionsMenu(show_profile_menu: Menu, inflater: MenuInflater) {
+        //menu item that showing the edit icon
+        val inflater = MenuInflater(context)
+        inflater.inflate(R.menu.show_profile_menu, show_profile_menu)
+        show_profile_menu.findItem(R.id.edit_profile_icon).setVisible(true)
+        super.onCreateOptionsMenu(show_profile_menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle item selection
+        return when (item.itemId) {
+            R.id.edit_profile_icon -> {
+                //Opening edit profile fragment
+                val fullname = view?.findViewById<TextView>(R.id.fullname)?.text.toString()
+                val nickname = view?.findViewById<TextView>(R.id.nickname)?.text.toString()
+                val email = view?.findViewById<TextView>(R.id.email)?.text.toString()
+                val location = view?.findViewById<TextView>(R.id.location)?.text.toString()
+                val skill1 = view?.findViewById<TextView>(R.id.skill1)?.text.toString()
+                val skill2 = view?.findViewById<TextView>(R.id.skill2)?.text.toString()
+                val description1 = view?.findViewById<TextView>(R.id.description1)?.text.toString()
+                val description2 = view?.findViewById<TextView>(R.id.description2)?.text.toString()
+
+                var bundle = Bundle()
+
+                bundle.putString("fullname", fullname)
+                bundle.putString("nickname", nickname)
+                bundle.putString("email", email)
+                bundle.putString("location", location)
+                bundle.putString("skill1", skill1)
+                bundle.putString("skill2", skill2)
+                bundle.putString("description1", description1)
+                bundle.putString("description2", description2)
+                bundle.putString("path", currentPhotoPath)
+
+                findNavController().navigate(R.id.action_nav_show_profile_to_nav_edit_profile, bundle)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+
 
 }

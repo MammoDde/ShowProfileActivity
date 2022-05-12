@@ -29,19 +29,16 @@
             app:exitAnim="@android:anim/fade_out"
             app:popEnterAnim="@android:anim/fade_in"
             app:popExitAnim="@android:anim/fade_out" />
-        <action
-            android:id="@+id/action_nav_adv_list_to_nav_edit_profile"
-            app:destination="@id/nav_edit_profile"
-            app:enterAnim="@android:anim/fade_in"
-            app:exitAnim="@android:anim/fade_out"
-            app:popEnterAnim="@android:anim/fade_in"
-            app:popExitAnim="@android:anim/fade_out" />
     </fragment>
     <fragment
         android:id="@+id/nav_show_profile"
         android:name="it.polito.showprofileactivity.ShowProfileFragment"
         android:label="My Profile"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_nav_show_profile_to_nav_edit_profile"
+            app:destination="@id/nav_edit_profile" />
+    </fragment>
     <fragment
         android:id="@+id/nav_edit_profile"
         android:name="it.polito.showprofileactivity.EditProfileFragment"
