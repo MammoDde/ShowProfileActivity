@@ -1,8 +1,10 @@
 package it.polito.showprofileactivity
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
@@ -25,11 +27,9 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
 
         setHasOptionsMenu(true)
 
-
-
-
-        //Caricamento shared preferences
-        val sharedPrefR = this.activity?.getPreferences(Context.MODE_PRIVATE)
+        //LOADING shared preferences
+        Log.d("load", "caricamento SP show profile")
+        val sharedPrefR = this.activity?.getPreferences(MODE_PRIVATE)
         val profileInfo = "{'full name' : '${getString(R.string.full_name)}', nickname : '${getString(R.string.nickname)}', " +
                 "email : '${getString(R.string.email)}', location : '${getString(R.string.location)}', skill1 : '${getString(R.string.skill1)}'," +
                 " skill2 : '${getString(R.string.skill2)}', description1 : '${getString(R.string.description1)}', " +
@@ -71,7 +71,6 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
             img.setImageBitmap(bitmap)
         }
 
-
         return root
 
     }
@@ -100,7 +99,7 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
 
                 var bundle = Bundle()
 
-                bundle.putString("fullname", fullname)
+                bundle.putString("full name", fullname)
                 bundle.putString("nickname", nickname)
                 bundle.putString("email", email)
                 bundle.putString("location", location)

@@ -55,7 +55,6 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         arguments.let {
             if (it != null) {
                 tv1.text = (it.get("full name").toString())
-
                 tv2.text = (it.get("nickname").toString())
                 tv3.text = (it.get("email").toString())
                 tv4.text = (it.get("location").toString())
@@ -72,7 +71,48 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
                 } catch (e: JSONException) {
                     println(e)
                 }
+
+                if(currentPhotoPath != null){
+                    val bitmap: Bitmap? = photo.loadImageFromStorage(currentPhotoPath, "icon")
+                    img.setImageBitmap(bitmap)
+                }
             }
+        }
+
+        //setting save button
+        val saveButton = root.findViewById<Button>(R.id.save_button)
+        tv1.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv2.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv3.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+            Log.d("email","funzia")
+        }
+        tv4.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv5.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv6.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv7.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
+        }
+        tv8.setOnClickListener {
+            saveButton.setEnabled(true)
+            saveButton.setClickable(true)
         }
 
         //IMPLEMENTAZIONE TASTO PER MODIFICARE LA FOTO DEL PROFILO
@@ -103,10 +143,9 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
         }
 
 
-        //setting save button
-        val saveButton = root.findViewById<Button>(R.id.save_button)
-
         saveButton.setOnClickListener {
+            saveButton.setClickable(false)
+            saveButton.setEnabled(false)
             val tvFullName = view?.findViewById<TextView>(R.id.edit_fullname)
             val tvNickname = view?.findViewById<TextView>(R.id.edit_nickname)
             val tvEmail = view?.findViewById<TextView>(R.id.edit_email)
@@ -132,9 +171,11 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit) {
             if (sharedPref != null) {
                 with(sharedPref.edit()) {
                     putString("profile", json.toString())
+                    Log.d("load", json.toString())
                     apply()
                 }
             }
+
         }
 
         return root
