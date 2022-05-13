@@ -1,9 +1,8 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.os.Bundle
 import android.view.*
 import android.widget.TextView
-import android.widget.Toolbar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController

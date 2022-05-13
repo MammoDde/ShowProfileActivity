@@ -1,7 +1,6 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.graphics.Bitmap

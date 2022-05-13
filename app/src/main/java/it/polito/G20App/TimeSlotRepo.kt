@@ -1,7 +1,6 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.LiveData
 
 class TimeSlotRepo(application: Application) {

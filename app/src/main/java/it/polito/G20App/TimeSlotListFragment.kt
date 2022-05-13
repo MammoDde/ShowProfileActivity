@@ -1,4 +1,4 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.os.Bundle
 import android.view.LayoutInflater

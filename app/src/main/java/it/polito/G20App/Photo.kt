@@ -1,4 +1,4 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.content.Context
 import android.content.ContextWrapper

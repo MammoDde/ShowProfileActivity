@@ -1,4 +1,4 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

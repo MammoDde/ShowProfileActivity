@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <string name="app_name">ShowProfileActivity</string>
+    <string name="app_name">G20App</string>
     <string name="image_profile">image profile</string>
     <string name="full_name">full name</string>
     <string name="nickname">nickname</string>
@@ -49,4 +49,7 @@
     <string name="_05_05_2022">05/05/2022</string>
     <string name="time_slot_title">Time Slot Title</string>
     <string name="nav_head_avatar">nav_head_avatar</string>
+    <!-- Facebook application ID and custom URL scheme (app ID prefixed by 'fb'). -->
+    <string name="facebook_application_id" translatable="false">YOUR_APP_ID</string>
+    <string name="facebook_login_protocol_scheme" translatable="false">fbYOUR_APP_ID</string>
 </resources>

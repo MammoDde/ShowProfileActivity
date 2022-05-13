@@ -6,7 +6,7 @@
     app:startDestination="@id/nav_adv_list">
     <fragment
         android:id="@+id/nav_adv_list"
-        android:name="it.polito.showprofileactivity.TimeSlotListFragment"
+        android:name="it.polito.G20App.TimeSlotListFragment"
         android:label="My Time Slots" >
         <action
             android:id="@+id/action_nav_adv_list_to_nav_slot_details"
@@ -32,7 +32,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_show_profile"
-        android:name="it.polito.showprofileactivity.ShowProfileFragment"
+        android:name="it.polito.G20App.ShowProfileFragment"
         android:label="My Profile"
         tools:layout="@layout/fragment_home" >
         <action
@@ -41,11 +41,11 @@
     </fragment>
     <fragment
         android:id="@+id/nav_edit_profile"
-        android:name="it.polito.showprofileactivity.EditProfileFragment"
+        android:name="it.polito.G20App.EditProfileFragment"
         android:label="Edit Profile" />
     <fragment
         android:id="@+id/nav_slot_details"
-        android:name="it.polito.showprofileactivity.TimeSlotDetailsFragment"
+        android:name="it.polito.G20App.TimeSlotDetailsFragment"
         android:label="Time Slot Details" >
         <action
             android:id="@+id/action_nav_slot_details_to_timeSlotEditFragment"
@@ -57,6 +57,6 @@
     </fragment>
     <fragment
         android:id="@+id/timeSlotEditFragment"
-        android:name="it.polito.showprofileactivity.TimeSlotEditFragment"/>
+        android:name="it.polito.G20App.TimeSlotEditFragment"/>
 
 </navigation>

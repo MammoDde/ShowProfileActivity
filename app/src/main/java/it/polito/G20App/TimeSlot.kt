@@ -1,4 +1,4 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import android.os.Bundle
 import android.util.Log
@@ -9,14 +9,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.Index
 import androidx.room.PrimaryKey
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 
 @Entity(tableName = "items")
 class TimeSlot {

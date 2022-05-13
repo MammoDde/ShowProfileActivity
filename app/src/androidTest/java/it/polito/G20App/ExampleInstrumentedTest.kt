@@ -1,4 +1,4 @@
-package it.polito.showprofileactivity
+package it.polito.G20App
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4
