@@ -4,8 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.ActionBar
-import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -25,10 +23,8 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         savedInstanceState: Bundle?
     ): View? {
         val root = inflater.inflate(R.layout.fragment_time_slot_list, container, false)
-        val navView: NavigationView? = activity?.findViewById(R.id.nav_view)
-        if (navView != null) {
-            navView.setCheckedItem(R.id.nav_adv_list)
-        }
+        activity?.findViewById<NavigationView?>(R.id.nav_view)?.setCheckedItem(R.id.nav_adv_list)
+
         (activity as MainActivity).supportActionBar?.setHomeButtonEnabled(true)
         (activity as MainActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
@@ -70,17 +66,18 @@ class TimeSlotListFragment : Fragment(R.layout.fragment_time_slot_list) {
         //defining ViewModel
         vm.value.observe(viewLifecycleOwner) {
             it.let {
+                //TODO if the list is empty we have to show a message
                 val adapter = TimeSlotAdapter(it as MutableList<TimeSlot>)
                 rv.adapter = adapter
             }
-
         }
 
-        fab.setOnClickListener{
+        fab.setOnClickListener {
             //aggiungere un nuovo elemento alla lista
             //il nuovo elemento deve essere creato dall'utente utilizzando il fragment TimeSlotEditFragment
             val bundle = Bundle()
-            it.findNavController().navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
+            it.findNavController()
+                .navigate(R.id.action_nav_adv_list_to_timeSlotEditFragment, bundle)
 
         }
 

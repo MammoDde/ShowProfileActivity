@@ -198,7 +198,7 @@ class TimeSlotEditFragment : Fragment() {
                             val root = view.rootView
                             Snackbar.make(root, "Time slot updated", Snackbar.LENGTH_LONG)
                                 .setAction("Redo") {
-                                    //TODO: Responds to click on the action
+                                    //TODO: Responds to click on the action for example reopening the editfragment
                                 }
                                 .show()
 
