@@ -25,8 +25,6 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
     ): View? {
         val root = inflater.inflate(R.layout.fragment_home, container, false)
 
-        setHasOptionsMenu(true)
-
         //LOADING shared preferences
         Log.d("load", "caricamento SP show profile")
         val sharedPrefR = this.activity?.getPreferences(MODE_PRIVATE)
@@ -75,11 +73,16 @@ class ShowProfileFragment : Fragment(R.layout.fragment_home) {
 
     }
 
+
+    /* Enable option menu with icon for edit profile */
+    override fun onCreate(savedInstanceState: Bundle?) {
+        setHasOptionsMenu(true)
+        super.onCreate(savedInstanceState)
+    }
+
     override fun onCreateOptionsMenu(show_profile_menu: Menu, inflater: MenuInflater) {
         //menu item that showing the edit icon
-        val inflater = MenuInflater(context)
         inflater.inflate(R.menu.show_profile_menu, show_profile_menu)
-        show_profile_menu.findItem(R.id.edit_profile_icon).setVisible(true)
         super.onCreateOptionsMenu(show_profile_menu, inflater)
     }
 
