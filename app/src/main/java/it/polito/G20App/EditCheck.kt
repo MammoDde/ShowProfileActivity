@@ -22,13 +22,9 @@ class EditCheck : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        //costrutto necessario per leggere dai dati passati dal bundle
-        arguments?.let {
-            if (it.getSerializable("id") != null) {
-                val id = it.getString("id")
-                view.findViewById<TextView>(R.id.textView6).text = id
-            }
-        }
+        val linkInitFirebase = "https://firebase.google.com/docs/android/setup"
+
+        val initFirebase = "E' stata seguita la guida a questo link" + linkInitFirebase + "seguendo option 1"
 
     }
 
